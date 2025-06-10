@@ -1,38 +1,27 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bir Işığın İki Parıltısı - İnteraktif Kitap</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bir Işığın İki Parıltısı</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Sabit arka plan öğeleri -->
-  <div class="sky">
-    <div class="sun" id="sun"></div>
-    <div class="moon" id="moon"></div>
-  </div>
+    <div id="universe">
+        <div id="stars"></div>
+        <div id="sun"></div>
+        <div id="moon"></div>
+        <div id="world"></div>
+    </div>
 
-  <!-- Hikaye Metinleri -->
-  <div class="container">
-    <section class="story-section">
-      <p>
-        Evrenin sonsuz karanlığında, yıldızların sessizce parladığı bir boşlukta, ışık ve gölge birbirine fısıldıyordu...
-      </p>
-    </section>
-    <section class="story-section">
-      <p>
-        Güneş, var oluşundan beri ışığını saçıyor, gezegenleri ısıtıyor; Ay ise sessiz sadakatiyle gecelerin yıldızıydı.
-      </p>
-    </section>
-    <section class="story-section">
-      <p>
-        Ay, Güneş’in ışığında yeniden var olurken, kendi içsel ışıltısını da keşfediyordu. Her kelime, her adım yeni bir parıltıydı...
-      </p>
-    </section>
-    <!-- Gerekirse daha fazla bölüm ekleyebilirsiniz -->
-  </div>
+    <div id="story-container">
+        <p id="story-text"></p>
+        <div id="navigation">
+            <button id="prev-btn" disabled>Geri</button>
+            <button id="next-btn">İleri</button>
+        </div>
+    </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

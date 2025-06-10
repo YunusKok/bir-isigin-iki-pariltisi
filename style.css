@@ -1,82 +1,156 @@
-/* Genel ayarlar */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+
 body {
-  margin: 0;
-  padding: 0;
-  background: #000;
-  color: #fff;
-  font-family: 'Helvetica Neue', sans-serif;
-  overflow-x: hidden;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden; /* Sayfa kaydırmasını engelle */
 }
 
-/* Sabit arka plan kapsayıcısı */
-.sky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Böylece metinle etkileşim kesilmez */
-  z-index: 1;
+#universe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    z-index: -1;
 }
 
-/* Güneş stilleri */
-.sun {
-  position: fixed;
-  top: 10%;
-  right: 5%;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle at center, #FFD700, #FF8C00);
-  border-radius: 50%;
-  box-shadow: 0 0 30px 10px rgba(255, 140, 0, 0.8);
-  transition: filter 0.3s ease, transform 0.3s ease;
-  filter: brightness(1);
+/* Yıldız efekti için */
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
 }
 
-/* Güneş için imleç üzerine gelince ekstra animasyon */
-.sun.excited {
-  /* Bu sınıf eklenince etrafında dönen bir ışık halkası efekti */
-  animation: rotateGlow 1s linear infinite;
-  filter: brightness(1.2);
+#stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: transparent url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    animation: move-twink-back 200s linear infinite;
 }
 
-/* Dönen efekt anahtarı */
-@keyframes rotateGlow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#sun, #moon, #world {
+    position: absolute;
+    border-radius: 50%;
+    transition: all 3s ease-in-out; /* Animasyonların yavaş ve estetik olmasını sağlar */
 }
 
-/* Ay stilleri */
-.moon {
-  position: fixed;
-  bottom: 10%;
-  left: 5%;
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle at center, #F0F0F0, #B0B0B0);
-  border-radius: 50%;
-  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s ease;
-  transform: scale(1); /* Varsayılan boyut */
+#sun {
+    width: 150px;
+    height: 150px;
+    background: #FFD700;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 50px #FFD700, 0 0 100px #FFA500, 0 0 150px #FF4500;
 }
 
-/* Hikaye metin kapsayıcısı */
-.container {
-  position: relative;
-  z-index: 2;
-  padding: 3rem;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
+#moon {
+    width: 60px;
+    height: 60px;
+    background: #E0E0E0;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px #FFFFFF, 0 0 30px #B0C4DE;
 }
 
-/* Her bir hikaye bölümü modern bir boşluk ile ayrılmış */
-.story-section {
-  margin: 80px 0;
-  font-size: 1.2rem;
-  opacity: 0.95;
+#world {
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, #3463d8, #0e1e3a);
+    top: 50%;
+    left: -100%; /* Başlangıçta ekran dışında */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 10;
+}
+
+/* Animasyon sınıfları */
+.sun-pulsing {
+    animation: sun-pulse 3s infinite ease-in-out;
+}
+@keyframes sun-pulse {
+    0% { box-shadow: 0 0 50px #FFD700, 0 0 100px #FFA500, 0 0 150px #FF4500; }
+    50% { box-shadow: 0 0 60px #FFD700, 0 0 120px #FFA500, 0 0 180px #FF4500; }
+    100% { box-shadow: 0 0 50px #FFD700, 0 0 100px #FFA500, 0 0 150px #FF4500; }
+}
+
+.sun-jealous-flash {
+    animation: jealous-flash 1.5s ease-in-out;
+}
+@keyframes jealous-flash {
+    0%, 100% { box-shadow: 0 0 50px #FFD700, 0 0 100px #FFA500; }
+    50% { box-shadow: 0 0 70px #FF4500, 0 0 140px #FF0000; }
+}
+
+.moon-flickering {
+    animation: moon-flicker 2s infinite;
+}
+@keyframes moon-flicker {
+    0%, 100% { box-shadow: 0 0 15px #FFFFFF, 0 0 30px #B0C4DE; }
+    50% { box-shadow: 0 0 10px #FFFFFF, 0 0 20px #B0C4DE, 0 0 25px #ff4848; opacity: 0.9; }
+}
+
+.moon-blushing {
+    background: #FFE4E1;
+    box-shadow: 0 0 20px #FFC0CB, 0 0 40px #FF69B4;
+}
+
+#story-container {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 25px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+#story-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    min-height: 100px; /* Metin değişiminde zıplamayı önler */
+}
+
+#navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    font-family: 'Playfair Display', serif;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover:not(:disabled) {
+    background-color: white;
+    color: black;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
