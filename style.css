@@ -181,12 +181,12 @@ body {
 
 .story-scene.tulip-theme .corner-flower {
     /* Örnek bir lale görseli, bu linki kendi dosya yolunuzla değiştirin */
-    background-image: url('https://pngimg.com/uploads/tulips/tulips_PNG33.png');
+    background-image: url('images/zambak.png');
 }
 
 .story-scene.lily-theme .corner-flower {
      /* Örnek bir zambak görseli, bu linki kendi dosya yolunuzla değiştirin */
-    background-image: url('https://static.vecteezy.com/system/resources/previews/022/925/899/original/ai-generative-white-lily-flower-on-transparent-background-png.png');
+    background-image: url('images/zambak.png');
 }
 
 
