@@ -172,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
         storyContainer.appendChild(sceneEl);
     });
 }
-
     populateStory();
     const scenes = document.querySelectorAll('.story-scene');
     scenes.forEach(scene => observer.observe(scene));
