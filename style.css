@@ -93,7 +93,7 @@ body {
     transform: translate(-50%, -50%); 
     opacity: 0; 
     z-index: 10;
-    background: url(images/2k_earth_daymap.jpg);
+    background: url(https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg);
     background-size: 200% 100%;
     box-shadow: inset 15px 0 30px rgba(0,0,0,0.9), 0 0 25px rgba(120, 180, 255, 0.5);
     animation: spin-world 40s linear infinite;
@@ -115,6 +115,47 @@ body {
 #sun.angry .eye.right, #moon.angry .eye.right { transform: rotate(-20deg); }
 .wistful .eye { top: 40%; height: 5%; border-radius: 20px 20px 0 0; background: transparent; border-top: 3px solid #2c2c2c;}
 .wistful .mouth {width: 25%; height: 2px; top: 65%;}
+
+
+/* YENİ: Güneş'in Yanakları */
+.cheek {
+    position: absolute;
+    width: 25%;
+    height: 15%;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.6), transparent 70%);
+    border-radius: 50%;
+    top: 50%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 6; /* Gözlerin ve ağzın üstünde olması için */
+}
+.cheek.left { left: 15%; }
+.cheek.right { right: 15%; }
+
+/* YENİ: Ay'ın Vişnesi */
+.cherry {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle at 30% 30%, #ff4d4d, #c0392b);
+    border-radius: 50%;
+    top: -6px;
+    left: 55%;
+    z-index: 10;
+}
+.cherry::before { /* Vişne Sapı */
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #5d3a0c;
+    border-right: 2px solid transparent;
+    border-radius: 100% 0 0 0;
+    transform: rotate(45deg);
+    top: -8px;
+    left: -8px;
+}
+
 
 /* ======================================= */
 /* === Hikaye Alanı ve Başlık === */
@@ -143,7 +184,6 @@ body {
     border-radius: 10px;
     padding: 50px 40px;
     background-color: rgba(10, 15, 25, 0.6);
-    /* GÜNCELLEME: Blur efekti azaltıldı (5px -> 3px) */
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -182,10 +222,15 @@ body {
 /* ======================================= */
 /* === HOVER EFEKTLERİ === */
 /* ======================================= */
+/* GÜNCELLEME: Güneş'in eski hover efekti kaldırıldı, yerine yanak kızarması geldi */
+#sun:hover .cheek {
+    opacity: 1;
+}
 #sun:hover {
-    box-shadow: 0 0 70px var(--sun-color), 0 0 140px var(--sun-glow1), 0 0 200px var(--sun-glow2);
+    /* İsteğe bağlı: İmleç üzerindeyken hafifçe büyümeye devam edebilir */
     transform: translate(-50%, -50%) scale(1.05);
 }
+
 
 #moon .hand, #moon .heart { position: absolute; border-radius: 10px; opacity: 0; transition: all 0.5s ease-out; z-index: 1; }
 #moon .hand { width: 8px; height: 25px; top: 50%; background-color: #444; }
@@ -233,44 +278,15 @@ body {
 
 
 /* ================================================ */
-/* === YENİ: MOBİL UYUMLULUK (RESPONSIVE DESIGN) === */
+/* === MOBİL UYUMLULUK (RESPONSIVE DESIGN) === */
 /* ================================================ */
 
-/* Ekran genişliği 768px veya daha az olduğunda bu kurallar devreye girer */
 @media (max-width: 768px) {
-    /* Ana metin konteynerini genişleterek telefon ekranını daha iyi kullanmasını sağlıyoruz */
-    #story-scroll-container {
-        width: 90%;
-    }
-
-    /* Telefon ekranında daha okunaklı olması için yazı font boyutlarını küçültüyoruz */
-    .story-scene p {
-        font-size: 1.2rem;
-    }
-
-    /* Ana başlığı mobil ekran için küçültüyoruz */
-    .intro-title h1 {
-        font-size: 2.2rem;
-    }
-
-    /* Final yazısının boyutunu ayarlıyoruz */
-    .final-quote {
-        font-size: 1.8rem;
-    }
-
-    /* Gök cisimlerini mobil ekranda daha orantılı görünmeleri için küçültüyoruz */
-    #sun {
-        width: 100px;
-        height: 100px;
-    }
-
-    #moon {
-        width: 45px;
-        height: 45px;
-    }
-
-    #world {
-        width: 60px;
-        height: 60px;
-    }
+    #story-scroll-container { width: 90%; }
+    .story-scene p { font-size: 1.2rem; }
+    .intro-title h1 { font-size: 2.2rem; }
+    .final-quote { font-size: 1.8rem; }
+    #sun { width: 100px; height: 100px; }
+    #moon { width: 45px; height: 45px; }
+    #world { width: 60px; height: 60px; }
 }
