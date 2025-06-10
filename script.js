@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ======================================= */
-    // === HİKAYE VERİSİ (YÜZ İFADELERİ GÜNCELLENDİ) === */
+    // === HİKAYE VERİSİ (YÜZ İFADELERİ AYARLI) === */
     // ======================================= */
     
     const storyData = [
@@ -131,15 +131,15 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `Ay ise onun bu haline hayranlıkla baktı ve fısıldadı: "Biliyor musun, tam olarak böyle olduğun için seni seviyorum. Küçük sakarlıkların… Bütün bunlar seni daha tatlı yapıyor."`,
-            action: () => { moon.classList.add('happy'); moon.style.transform = 'translate(-50%, -50%) rotate(-15deg)'; }
+            action: () => { moon.classList.add('happy'); sun.classList.remove('surprised'); sun.classList.add('happy'); moon.style.transform = 'translate(-50%, -50%) rotate(-15deg)'; }
         },
         {
             text: `"Benim mükemmel olmam gerek," diye mırıldandı Güneş. Ama Ay başını salladı. "Hayır, sen zaten en mükemmel halinlesin. Çünkü seni sadece ışığın için değil, içindeki heyecanlı çocukla seviyorum."`,
-            action: () => { sun.classList.remove('surprised'); sun.classList.add('happy'); }
+            action: () => { sun.classList.add('happy'); moon.classList.add('happy');}
         },
         {
             text: `Güneş, Ay’a olan sevgisinin yalnızca ona değil, onun yanında kendisine duyduğu sevgi olduğunu anladı. Ay, ona kendi en saf halini göstermişti ve Güneş artık, sadece Ay’a değil, onunla olduğu “kendisine” de âşıktı.`,
-            action: () => { sun.style.left = '48%'; moon.style.left = '52%'; sun.classList.add('happy'); moon.classList.add('happy');}
+            action: () => { sun.style.left = '48%'; moon.style.left = '52%'; }
         },
         {
             text: `"Gözlerime bakamasan da şu an, bildiğim bir şey var: Sen benim içimde, en derin yerde yaşayan en güzel 'iyi ki'msin. Ve ben, bu uzaklığa rağmen her geçen gün sana daha da yaklaşıyorum. Çünkü mesafeler bir kalbi vazgeçiremiyorsa, o kalp gerçekten seviyor demektir."`,
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `Onlar birbirlerine ulaşamayan ama birbirleri olmadan da var olamayan iki aşık gibiydi. Aşk, bazen ulaşmak değil, her zaman hissetmek değil mi?`,
-            action: () => { sun.style.left = '30%'; moon.style.left = '70%'; sun.classList.add('happy'); moon.classList.add('happy'); }
+            action: () => { sun.style.left = '30%'; moon.style.left = '70%'; }
         },
         {
             text: `Ay anladı ki, Güneş’e ulaşmak onun ışığında yok olmak değil, onunla birlikte parlamak demekti. Bazen aşk, uzaklığın içinde güçlenir ve mesafeler onun sınırlarını belirlemez.`,
@@ -211,11 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `Ancak Ay, karanlıkta kaybolduğunu sansa da evrenin boşluğu aslında ona yeni bir ses kazandırır. Görünmez olduğunu düşündüğünde, içsel ışığını keşfetmeye başlar.`,
-            action: () => { moon.style.boxShadow = '0 0 10px #add8e6, 0 0 20px #4682b4'; moon.style.background = '#f0f8ff'; moon.classList.add('happy'); }
+            action: () => { moon.style.boxShadow = '0 0 10px #add8e6, 0 0 20px #4682b4'; moon.style.background = '#f0f8ff'; }
         },
         {
             text: `Ay, Güneş’in ışığını yansıtmayı görev bilmişti hep, ama o an fark eder ki, kendi varlığı, ışık olmadan da anlamlıdır. Güneş’in gözleri ondan uzak olsa bile, Ay evrenin sonsuz boşluğunda yankılanan kendi ışığını bulur.`,
-            action: () => { moon.classList.add('happy'); moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff'; }
+            action: () => { moon.classList.remove('sad'); moon.classList.add('happy'); moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff'; }
         },
         {
             text: `Güneş ise, Ay’ı göremediği zaman gerçek parlaklığını sorgulamaya başlar. Hep dünyasını aydınlatmakla meşgulken, Ay’ın ona kattığı anlamı fark etmemiştir. Kendi ışığı güçlü olsa da, onun güzelliğini en iyi yansıtanın Ay olduğunu şimdi anlar.`,
