@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Times+New+Roman&display=swap');
 
 :root {
     --sun-color: #FFD700;
@@ -135,34 +135,23 @@ body {
 
 
 /* ======================================= */
-/* === YENİ: SADE VE MODERN METİN ÇERÇEVESİ === */
+/* === Sade ve Modern Metin Çerçevesi === */
 /* ======================================= */
 .story-scene {
     position: relative;
     margin-bottom: 50vh;
     border-radius: 10px;
     padding: 50px 40px;
-    /* Uzay boşluğu hissi veren koyu ve yarı şeffaf bir arka plan */
     background-color: rgba(10, 15, 25, 0.6);
-    /* "Buzlu cam" efekti ile arkadaki yıldızları bulanıklaştır */
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    
-    /* Çerçevenin kenarlarını belirginleştiren çok ince bir sınır */
     border: 1px solid rgba(255, 255, 255, 0.1);
-
-    /* Sahne aktif olduğunda belirecek olan iç gölge (parlama) için başlangıç durumu */
     box-shadow: inset 0 0 0px 0px rgba(220, 220, 255, 0);
-    
-    /* Tüm değişikliklerin yumuşak geçişi için */
     transition: all 0.8s ease-in-out;
 }
 
-/* Sahne aktif olduğunda... */
 .story-scene.is-active {
-    /* Kenarlık rengini biraz daha belirgin yap */
     border-color: rgba(255, 255, 255, 0.25);
-    /* Kenarlardan içeri doğru yumuşak, beyaz bir "yıldız ışığı" parlaması ekle */
     box-shadow: inset 0 0 25px 3px rgba(220, 220, 255, 0.15);
 }
 
@@ -174,7 +163,21 @@ body {
     text-align: center;
     color: #e0e0e0;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px; /* Sayfa numarasına yer açmak için */
 }
+
+/* YENİ: Sahne Numaralandırma Stili */
+.scene-progress {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    font-family: 'Roboto', sans-serif; /* Daha okunaklı bir font */
+    font-style: normal;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    z-index: 5;
+}
+
 
 /* ======================================= */
 /* === HOVER EFEKTLERİ === */
