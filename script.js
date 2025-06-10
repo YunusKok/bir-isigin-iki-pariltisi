@@ -8,18 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // HİKAYENİN TAMAMI SAHNELERE BÖLÜNDÜ
     const storyData = [
         { // Sahne 0: Başlangıç
-            text: "Evrenin sonsuz karanlığında, Ay ve Güneş, ilk bakışta birbirinden uzak, ayrı varlıklardı. Biri geceyi süslerken, diğeri gündüzü aydınlatıyordu.  Aslında, evrenin en derin sırlarından biri onların ilişkisine gizlenmişti: Ay, Güneş’in içinde her zaman vardı. ",
+            text: "Evrenin sonsuz karanlığında, Ay ve Güneş, ilk bakışta birbirinden uzak, ayrı varlıklardı. Biri geceyi süslerken, diğeri gündüzü aydınlatıyordu. Aslında, evrenin en derin sırlarından biri onların ilişkisine gizlenmişti: Ay, Güneş’in içinde her zaman vardı.",
             action: () => {} // Reset fonksiyonu varsayılan durumu zaten ayarlıyor.
         },
         { // Sahne 1: Ay'ın Özlemi
-            text: "Ancak bir şey değişmeye başladı: Ay artık sadece ışık taşıyan bir varlık olmaktan öteye geçmek istiyordu.  İçindeki özlem büyüdü. O sadece bir yansıma mıydı, yoksa Güneş’in içinde kaybolmaya cesaret edebilir miydi?  Güneş’in yanına gitmek, ona gerçekten ulaşmak istiyordu. ",
+            text: "Ancak bir şey değişmeye başladı: Ay artık sadece ışık taşıyan bir varlık olmaktan öteye geçmek istiyordu. İçindeki özlem büyüdü. O sadece bir yansıma mıydı, yoksa Güneş’in içinde kaybolmaya cesaret edebilir miydi? Güneş’in yanına gitmek, ona gerçekten ulaşmak istiyordu.",
             action: () => {
                 moon.classList.add('wistful');
                 moon.style.left = '75%';
             }
         },
         { // Sahne 2: Güneş'in Fark Edişi
-            text: "Güneş ise bu değişimi fark ettiğinde şaşırdı. Ay her zaman dingin, uzak ve kendi halinde olmuştu.  Ama şimdi, ışığında bir kırılma görüyordu. Ay’ın enerjisi değişmişti; ona doğru akıyordu. ",
+            text: "Güneş ise bu değişimi fark ettiğinde şaşırdı. Ay her zaman dingin, uzak ve kendi halinde olmuştu. Ama şimdi, ışığında bir kırılma görüyordu. Ay’ın enerjisi değişmişti; ona doğru akıyordu.",
             action: () => {
                 sun.classList.add('surprised');
                 moon.classList.remove('wistful');
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 3: Yaklaşma ve Dönüşüm
-            text: "Ay, yörüngesini değiştirdi, Güneş’e doğru ilerlemeye başladı.  Yaklaşırken, yüzeyi yavaş yavaş kızardı.  Güneş, Ay’ın bu dönüşümünü gördüğünde şaşkınlıkla ona baktı... Kıskançlık, özlem ve tutku iç içe geçmişti. ",
+            text: "Ay, yörüngesini değiştirdi, Güneş’e doğru ilerlemeye başladı. Yaklaşırken, yüzeyi yavaş yavaş kızardı. Güneş, Ay’ın bu dönüşümünü gördüğünde şaşkınlıkla ona baktı... Kıskançlık, özlem ve tutku iç içe geçmişti.",
             action: () => {
                 sun.classList.add('happy');
                 moon.style.left = '60%';
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 4: Güneş'in Sakarlıkları
-            text: "Güneş, güçlüydü, ihtişamlıydı ama bazen kendisini bile şaşırtan küçük sakarlıklar yapıyordu.  Ay ise onun bu haline hayranlıkla baktı ve fısıldadı: 'Biliyor musun, tam olarak böyle olduğun için seni seviyorum... Bütün bunlar seni daha tatlı yapıyor.' ",
+            text: "Güneş, güçlüydü, ihtişamlıydı ama bazen kendisini bile şaşırtan küçük sakarlıklar yapıyordu. Ay ise onun bu haline hayranlıkla baktı ve fısıldadı: 'Biliyor musun, tam olarak böyle olduğun için seni seviyorum... Bütün bunlar seni daha tatlı yapıyor.'",
             action: () => {
                 sun.classList.add('surprised');
                 moon.classList.add('happy');
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 5: Güneş'in Kıskançlığı
-            text: "Güneş, gezegenlerin gökyüzünde Ay’a baktığını gördü. İçinde kıskanç bir alev parladı.  Ay, yalnızca Güneş’e ait değil miydi?  Ama tam bu düşüncelere kapıldığında, Ay ona nazikçe parladı: 'Ben senin ışığından doğdum, senin parçanım.' ",
+            text: "Güneş, gezegenlerin gökyüzünde Ay’a baktığını gördü. İçinde kıskanç bir alev parladı. Ay, yalnızca Güneş’e ait değil miydi? Ama tam bu düşüncelere kapıldığında, Ay ona nazikçe parladı: 'Ben senin ışığından doğdum, senin parçanım.'",
             action: () => {
                 sun.classList.add('angry');
                 moon.classList.add('surprised');
@@ -54,14 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 6: Ay'ın Kıskançlığı
-            text: "Bu kez Ay'ın içinde bir kıskançlık büyümeye başladı. Güneş’in cömertçe ışığını diğer gezegenlere sunduğunu fark etti.  Güneş gülümsedi: 'Işık saçmam, seni özel yapmaktan çıkarır mı?'  Işıkları paylaşsalar da, Ay ile Güneş’in bağı, evrendeki hiçbir başka gök cismiyle kıyaslanamazdı. ",
+            text: "Bu kez Ay'ın içinde bir kıskançlık büyümeye başladı. Güneş’in cömertçe ışığını diğer gezegenlere sunduğunu fark etti. Güneş gülümsedi: 'Işık saçmam, seni özel yapmaktan çıkarır mı?' Işıkları paylaşsalar da, Ay ile Güneş’in bağı, evrendeki hiçbir başka gök cismiyle kıyaslanamazdı.",
             action: () => {
                 moon.classList.add('angry');
                 sun.classList.add('happy');
             }
         },
         { // Sahne 7: Rüyadaki Yüzleşme
-            text: "Bir gün Ay, rüyasında Güneş'i gördü ve şakasına onu tanımamazlıktan geldi.  Güneş, Ay’ın ne yaptığını hemen anladı. Sert bir şekilde ileri doğru atıldı, yakasına sıkıca yapıştı; bu güç, Ay’ı incitmek için değil, onun kaçmasına izin vermemek içindi. ",
+            text: "Bir gün Ay, rüyasında Güneş'i gördü ve şakasına onu tanımamazlıktan geldi. Güneş, Ay’ın ne yaptığını hemen anladı. Sert bir şekilde ileri doğru atıldı, yakasına sıkıca yapıştı; bu güç, Ay’ı incitmek için değil, onun kaçmasına izin vermemek içindi.",
             action: () => {
                 sun.classList.add('angry');
                 moon.classList.add('surprised');
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 8: Dünyaların Araya Girişi
-            text: "Ama bazen araya ikisinin de dünyaları girer; ay için güneş, güneş için ay tutulması oluşur.  Ay, Güneşin ondan ışığını esirgediğini düşünür. Aslında problem ikisinin de dünyasıdır.  Güneş, dünyasını etrafında döndürür. Ay ise dünyasının etrafında döner. ",
+            text: "Ama bazen araya ikisinin de dünyaları girer; ay için güneş, güneş için ay tutulması oluşur. Ay, Güneşin ondan ışığını esirgediğini düşünür. Aslında problem ikisinin de dünyasıdır. Güneş, dünyasını etrafında döndürür. Ay ise dünyasının etrafında döner.",
             action: () => {
                 sun.classList.add('sad');
                 moon.classList.add('sad');
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 9: Tutulma ve Karanlık
-            text: "Güneş, Ay'ı göremediği için ışıltısını kaybettiğini düşünür.  Işık kaynağını kaybedince Ay adeta görünmez olur.  Ancak Ay, karanlıkta kaybolduğunu sansa da evrenin boşluğu aslında ona yeni bir ses kazandırır. ",
+            text: "Güneş, Ay'ı göremediği için ışıltısını kaybettiğini düşünür. Işık kaynağını kaybedince Ay adeta görünmez olur. Ancak Ay, karanlıkta kaybolduğunu sansa da evrenin boşluğu aslında ona yeni bir ses kazandırır.",
             action: () => {
                 sun.classList.add('sad');
                 moon.classList.add('sad');
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 10: İçsel Işığın Keşfi
-            text: "Görünmez olduğunu düşündüğünde, içsel ışığını keşfetmeye başlar.  Ay, Güneş’in ışığını yansıtmayı görev bilmişti hep, ama o an fark eder ki, kendi varlığı, ışık olmadan da anlamlıdır.  Ay artık sadece Güneş’in ışığını taşıyan bir varlık değil, kendi içsel ışığını da bilen bir yıldızdır. ",
+            text: "Görünmez olduğunu düşündüğünde, içsel ışığını keşfetmeye başlar. Ay, Güneş’in ışığını yansıtmayı görev bilmişti hep, ama o an fark eder ki, kendi varlığı, ışık olmadan da anlamlıdır. Ay artık sadece Güneş’in ışığını taşıyan bir varlık değil, kendi içsel ışığını da bilen bir yıldızdır.",
             action: () => {
                 sun.classList.add('sad');
                 moon.classList.remove('sad');
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 11: Yeniden Kavuşma
-            text: "Sonra, evrenin döngüsü devam eder. Tutulma sona erer ve Ay tekrar Güneş’in ışığını kucaklar.  Güneş de artık sadece parlayan bir merkez değil, Ay’ın yansıması olmadan da var olan bir varlıktır.  Ve böylece, ikisi birbirlerine daha fazla kıymet verirler. ",
+            text: "Sonra, evrenin döngüsü devam eder. Tutulma sona erer ve Ay tekrar Güneş’in ışığını kucaklar. Güneş de artık sadece parlayan bir merkez değil, Ay’ın yansıması olmadan da var olan bir varlıktır. Ve böylece, ikisi birbirlerine daha fazla kıymet verirler.",
             action: () => {
                 sun.classList.add('happy');
                 moon.classList.add('happy');
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         { // Sahne 12: Son Sözler
-            text: '"Gözlerime bakamasan da şu an, bildiğim bir şey var: Sen benim içimde, en derin yerde yaşayan en güzel \'iyi ki\'msin."  "Seni çok seviyorum. Hem çocuk halimle, hem sakar halimle, hem de seni her kelimemde taşıyan bu deli kalbimle. Benim Ay’ım, benim sessizliğim, benim sonsuzluğum…" ',
+            text: '"Gözlerime bakamasan da şu an, bildiğim bir şey var: Sen benim içimde, en derin yerde yaşayan en güzel \'iyi ki\'msin." "Seni çok seviyorum. Hem çocuk halimle, hem sakar halimle, hem de seni her kelimemde taşıyan bu deli kalbimle. Benim Ay’ım, benim sessizliğim, benim sonsuzluğum…"',
             action: () => {
                 sun.classList.add('happy');
                 moon.classList.add('happy');
@@ -127,40 +127,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Her sahne değişiminden önce TÜM durumları sıfırlayan fonksiyon
     function resetAllStates() {
-        // Yüz ifadelerini temizle
         const expressions = ['happy', 'sad', 'surprised', 'angry', 'wistful'];
         sun.classList.remove(...expressions);
         moon.classList.remove(...expressions);
-
-        // Güneş'i sıfırla
         sun.style.left = '20%';
         sun.style.top = '50%';
         sun.style.transform = 'translate(-50%, -50%) scale(1)';
         sun.style.boxShadow = `0 0 50px var(--sun-color), 0 0 100px var(--sun-glow1), 0 0 150px var(--sun-glow2)`;
-        
-        // Ay'ı sıfırla
         moon.style.left = '80%';
         moon.style.top = '50%';
         moon.style.transform = 'translate(-50%, -50%) rotate(0deg)';
         moon.style.background = 'var(--moon-color)';
         moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)';
-
-        // DÜNYA'YI SIFIRLA (En Önemli Düzeltme)
         world.style.left = '-100px';
         world.style.opacity = '0';
     }
 
-
+    // DÜZELTME: Bu fonksiyon zambaklar için gerekli iç div'leri de oluşturacak şekilde güncellendi.
     function populateStory() {
         storyData.forEach((scene, index) => {
             const sceneEl = document.createElement('div');
             sceneEl.classList.add('story-scene');
             sceneEl.setAttribute('data-scene-index', index);
+
+            const topDecoration = document.createElement('div');
+            topDecoration.classList.add('flower-decoration', 'top');
+
+            const bottomDecoration = document.createElement('div');
+            bottomDecoration.classList.add('flower-decoration', 'bottom');
+
+            for (let i = 0; i < 15; i++) {
+                const flower = document.createElement('div');
+                if (index % 2 === 0) {
+                    flower.classList.add('lale');
+                } else {
+                    flower.classList.add('zambak');
+                    // Zambak için gerekli olan iç yaprakları ekle
+                    const petal1 = document.createElement('div');
+                    petal1.classList.add('zambak-petal');
+                    const petal2 = document.createElement('div');
+                    petal2.classList.add('zambak-petal');
+                    flower.appendChild(petal1);
+                    flower.appendChild(petal2);
+                }
+                topDecoration.appendChild(flower);
+                bottomDecoration.appendChild(flower.cloneNode(true));
+            }
+
             const paragraph = document.createElement('p');
             paragraph.innerHTML = scene.text;
+
+            sceneEl.appendChild(topDecoration);
             sceneEl.appendChild(paragraph);
+            sceneEl.appendChild(bottomDecoration);
+            
             storyContainer.appendChild(sceneEl);
         });
     }
@@ -180,49 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.story-scene').forEach(el => el.classList.remove('is-active'));
                 activeScene.classList.add('is-active');
 
-                // Önce her şeyi sıfırla, sonra yeni animasyonu başlat
                 resetAllStates();
                 storyData[sceneIndex].action();
             }
         });
     }, options);
 
-    function populateStory() {
-    storyData.forEach((scene, index) => {
-        const sceneEl = document.createElement('div');
-        sceneEl.classList.add('story-scene');
-        sceneEl.setAttribute('data-scene-index', index);
-
-        // Üst ve alt dekorasyon konteynerlarını oluştur
-        const topDecoration = document.createElement('div');
-        topDecoration.classList.add('flower-decoration', 'top');
-
-        const bottomDecoration = document.createElement('div');
-        bottomDecoration.classList.add('flower-decoration', 'bottom');
-
-        // Çiçekleri oluştur ve dekorasyon konteynerlarına ekle
-        for (let i = 0; i < 15; i++) {
-            const flower = document.createElement('div');
-            // Sahne indeksine göre lale veya zambak sınıfı ekle
-            if (index % 2 === 0) {
-                flower.classList.add('lale');
-            } else {
-                flower.classList.add('zambak');
-            }
-            // Oluşturulan çiçeği hem üste hem alta ekle (klonlayarak)
-            topDecoration.appendChild(flower);
-            bottomDecoration.appendChild(flower.cloneNode(true));
-        }
-
-        const paragraph = document.createElement('p');
-        paragraph.innerHTML = scene.text;
-
-        // Elementleri sahneye doğru sırada ekle
-        sceneEl.appendChild(topDecoration);
-        sceneEl.appendChild(paragraph);
-        sceneEl.appendChild(bottomDecoration);
-        
-        storyContainer.appendChild(sceneEl);
-    });
-    }
+    populateStory();
+    const scenes = document.querySelectorAll('.story-scene');
+    scenes.forEach(scene => observer.observe(scene));
 });
