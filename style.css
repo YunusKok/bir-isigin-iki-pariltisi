@@ -1,4 +1,4 @@
-/* Temel ayarlar */
+/* Genel ayarlar */
 body {
   margin: 0;
   padding: 0;
@@ -8,53 +8,63 @@ body {
   overflow-x: hidden;
 }
 
-/* Arka plan etkileri için sabit kap */
+/* Sabit arka plan kapsayıcısı */
 .sky {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;  /* Metinle etkileşimi engellemesin */
+  pointer-events: none; /* Böylece metinle etkileşim kesilmez */
   z-index: 1;
 }
 
-/* Güneş: Ekranın sağ üst köşesinde, parlaklık scroll ile değişecek */
+/* Güneş stilleri */
 .sun {
   position: fixed;
   top: 10%;
   right: 5%;
   width: 150px;
   height: 150px;
-  background: radial-gradient(circle at center, #FFD700, #FF8C00 70%);
+  background: radial-gradient(circle at center, #FFD700, #FF8C00);
   border-radius: 50%;
   box-shadow: 0 0 30px 10px rgba(255, 140, 0, 0.8);
+  transition: filter 0.3s ease, transform 0.3s ease;
   filter: brightness(1);
-  transition: filter 0.5s ease;
 }
 
-/* Ay: Ekranın sol alt köşesinde, yavaş hareket animasyonu eklenmiş */
+/* Güneş için imleç üzerine gelince ekstra animasyon */
+.sun.excited {
+  /* Bu sınıf eklenince etrafında dönen bir ışık halkası efekti */
+  animation: rotateGlow 1s linear infinite;
+  filter: brightness(1.2);
+}
+
+/* Dönen efekt anahtarı */
+@keyframes rotateGlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ay stilleri */
 .moon {
   position: fixed;
   bottom: 10%;
   left: 5%;
   width: 120px;
   height: 120px;
-  background: radial-gradient(circle at center, #F0F0F0, #B0B0B0 70%);
+  background: radial-gradient(circle at center, #F0F0F0, #B0B0B0);
   border-radius: 50%;
-  box-shadow:
-    inset -5px -5px 15px rgba(0,0,0,0.5),
-    0 0 20px 5px rgba(255, 255, 255, 0.3);
-  animation: slowFloat 10s ease-in-out infinite;
+  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+  transform: scale(1); /* Varsayılan boyut */
 }
 
-/* Hafif yüzer animasyon */
-@keyframes slowFloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-/* Metin kapsayıcısı */
+/* Hikaye metin kapsayıcısı */
 .container {
   position: relative;
   z-index: 2;
@@ -64,9 +74,9 @@ body {
   line-height: 1.6;
 }
 
-/* Her bir hikaye bölümüne modern bir boşluk */
+/* Her bir hikaye bölümü modern bir boşluk ile ayrılmış */
 .story-section {
   margin: 80px 0;
-  opacity: 0.95;
   font-size: 1.2rem;
+  opacity: 0.95;
 }
