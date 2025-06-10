@@ -224,5 +224,5 @@ document.addEventListener('DOMContentLoaded', () => {
         
         storyContainer.appendChild(sceneEl);
     });
-}
+    }
 });
