@@ -144,30 +144,39 @@ document.addEventListener('DOMContentLoaded', () => {
         world.style.opacity = '0';
     }
 
-    function populateStory() {
+
+function populateStory() {
     storyData.forEach((scene, index) => {
         const sceneEl = document.createElement('div');
         sceneEl.classList.add('story-scene');
         sceneEl.setAttribute('data-scene-index', index);
 
-        // Sahne indeksine göre tema sınıfı ata
-        if (index % 2 === 0) {
-            sceneEl.classList.add('tulip-theme'); // Çift numaralı sahneler lale temalı
-        } else {
-            sceneEl.classList.add('lily-theme'); // Tek numaralı sahneler zambak temalı
-        }
+        const topDecoration = document.createElement('div');
+        topDecoration.classList.add('flower-decoration', 'top');
 
-        // Dört köşe için süsleme div'lerini oluştur ve ekle
-        const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
-        corners.forEach(corner => {
-            const cornerEl = document.createElement('div');
-            cornerEl.classList.add('corner-flower', corner);
-            sceneEl.appendChild(cornerEl);
-        });
+        const bottomDecoration = document.createElement('div');
+        bottomDecoration.classList.add('flower-decoration', 'bottom');
+
+        // 15 adet çiçek elementi oluşturup üst ve alt süsleme alanlarına ekleyelim
+        for (let i = 0; i < 15; i++) {
+            const flower = document.createElement('div');
+            // Sahne indeksine göre lale veya zambak sınıfı ekle
+            if (index % 2 === 0) {
+                flower.classList.add('lale');
+            } else {
+                flower.classList.add('zambak');
+            }
+            topDecoration.appendChild(flower);
+            // Her çiçeği klonlayarak alt süslemeye de ekleyelim ki bağımsız olsunlar
+            bottomDecoration.appendChild(flower.cloneNode(true));
+        }
 
         const paragraph = document.createElement('p');
         paragraph.innerHTML = scene.text;
+
+        sceneEl.appendChild(topDecoration);
         sceneEl.appendChild(paragraph);
+        sceneEl.appendChild(bottomDecoration);
         
         storyContainer.appendChild(sceneEl);
     });

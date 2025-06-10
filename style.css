@@ -136,78 +136,154 @@ body {
     text-align: center;
 }
 
+/* style.css */
+
 /* ======================================= */
-/* === GERÇEKÇİ KÖŞE SÜSLEMELERİ === */
+/* === GELİŞMİŞ SAF CSS ÇİÇEK SÜSLEMELERİ === */
 /* ======================================= */
 
 .story-scene {
-    position: relative; /* Süslemelerin doğru konumlanması için */
-    padding: 40px; /* Süslemelerin metne değmemesi için iç boşluk */
+    position: relative;
+    padding: 60px 40px; /* Süslemelere daha fazla yer açalım */
+    background: rgba(0, 0, 0, 0.4); 
 }
 
-.corner-flower {
+.flower-decoration {
     position: absolute;
-    width: 100px;  /* Süsleme boyutu */
-    height: 100px; /* Süsleme boyutu */
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0; /* Başlangıçta görünmez */
-    transition: opacity 1s ease-out;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 40px; /* Yüksekliği biraz artıralım */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
 }
 
-/* Süslemeleri köşelere konumlandırma */
-.corner-flower.top-left {
-    top: -15px;
-    left: -15px;
-}
-.corner-flower.top-right {
-    top: -15px;
-    right: -15px;
-    transform: scaleX(-1); /* Görüntüyü yatayda çevirerek simetri sağla */
-}
-.corner-flower.bottom-left {
-    bottom: -15px;
-    left: -15px;
-    transform: scaleY(-1); /* Görüntüyü dikeyde çevir */
-}
-.corner-flower.bottom-right {
-    bottom: -15px;
-    right: -15px;
-    transform: scaleX(-1) scaleY(-1); /* Görüntüyü hem dikey hem yatayda çevir */
+.flower-decoration.top {
+    top: 10px;
 }
 
-/* --- TEMA GÖRSELLERİ --- */
-/* ÖNEMLİ: Aşağıdaki url() kısımlarını kendi görsellerinizle değiştirin! */
-
-.story-scene.tulip-theme .corner-flower {
-    /* Örnek bir lale görseli, bu linki kendi dosya yolunuzla değiştirin */
-    background-image: url('images/zambak.png');
+.flower-decoration.bottom {
+    bottom: 10px;
 }
 
-.story-scene.lily-theme .corner-flower {
-     /* Örnek bir zambak görseli, bu linki kendi dosya yolunuzla değiştirin */
-    background-image: url('images/zambak.png');
+/* --- Gelişmiş LALE Tasarımı --- */
+.lale {
+    position: relative;
+    width: 18px; /* Boyutları büyütelim */
+    height: 25px;
+    /* Düz renk yerine renk geçişi (gradient) ile derinlik katalım */
+    background: linear-gradient(to bottom, #e74c3c, #c0392b);
+    /* Daha organik bir lale şekli için gelişmiş border-radius */
+    border-radius: 50% 50% 3% 3% / 85% 85% 15% 15%;
+    opacity: 0;
+    /* Hafif bir gölge ile yaprakları belirginleştirelim */
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2);
+}
+
+.lale::before,
+.lale::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #c0392b, #962d22);
+    border-radius: inherit;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2);
+}
+
+.lale::before {
+    transform: translateX(-55%) rotate(-25deg);
+}
+
+.lale::after {
+    transform: translateX(55%) rotate(25deg);
 }
 
 
-/* Sahne aktif olduğunda süslemelerin belirmesi */
-.story-scene.is-active .corner-flower {
-    opacity: 0.8;
+/* --- Gelişmiş ZAMBAK Tasarımı --- */
+.zambak {
+    position: relative;
+    width: 25px; /* Boyutları büyütelim */
+    height: 25px;
+    opacity: 0;
+    /* Ana yapraklar için hafif bir dönme efekti */
+    transform: rotate(15deg); 
 }
 
-/* Farklı köşelerin farklı gecikmelerle belirmesi */
-.story-scene.is-active .corner-flower.top-left { transition-delay: 0.2s; }
-.story-scene.is-active .corner-flower.top-right { transition-delay: 0.4s; }
-.story-scene.is-active .corner-flower.bottom-left { transition-delay: 0.6s; }
-.story-scene.is-active .corner-flower.bottom-right { transition-delay: 0.8s; }
+.zambak::before,
+.zambak::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Merkezden dışa doğru yumuşak bir beyaz geçişi */
+    background: radial-gradient(circle, #fff, #e8e8e8);
+    /* Daha zarif ve sivri bir yaprak şekli */
+    border-radius: 50% 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.zambak::before {
+    transform: rotate(-45deg) scale(1.1); /* Biraz daha büyük ve belirgin */
+}
+
+.zambak::after {
+    transform: rotate(135deg) scale(1.1);
+}
+
+/* Zambak ortasındaki sarı benekler */
+.zambak::after {
+    /* İkinci bir gradient katmanı ile sarı merkezi oluşturalım */
+    background: radial-gradient(circle, #f1c40f 2px, transparent 3px), 
+                radial-gradient(circle, #fff, #e8e8e8);
+}
+
+
+/* Çiçeklerin sahne aktif olunca belirmesi için animasyon */
+@keyframes bloom {
+    0% {
+        opacity: 0;
+        transform: scale(0.2) rotate(0deg);
+    }
+    60% {
+        transform: scale(1.1) rotate(5deg);
+    }
+    100% {
+        opacity: 0.9;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.zambak {
+    /* Zambak için farklı bir başlangıç rotasyonu */
+    transform: rotate(15deg);
+}
+.zambak:hover {
+    transform: rotate(0deg); /* Üzerine gelince düzelsin */
+}
+@keyframes bloom {
+    /* Zambak için kendi rotasyonunu koruyacak şekilde güncelleme */
+    0% { opacity: 0; transform: scale(0.2) rotate(15deg); }
+    60% { transform: scale(1.1) rotate(20deg); }
+    100% { opacity: 0.9; transform: scale(1) rotate(15deg); }
+}
+
 
 .story-scene.is-active .flower-decoration div {
     animation-name: bloom;
-    animation-duration: 1s;
+    animation-duration: 1.2s;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
+    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Zıplama efekti */
 }
 
+/* Her çiçeğin farklı bir gecikmeyle belirmesi */
 .story-scene.is-active .flower-decoration div:nth-child(1) { animation-delay: 0.1s; }
 .story-scene.is-active .flower-decoration div:nth-child(2) { animation-delay: 0.2s; }
 .story-scene.is-active .flower-decoration div:nth-child(3) { animation-delay: 0.3s; }
