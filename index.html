@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bir Işığın İki Parıltısı</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bir Işığın İki Parıltısı</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <section id="intro">
-            <h1>Bir Işığın İki Parıltısı</h1>
-            <p>Evrenin sonsuz karanlığında, yıldızların sessizce parladığı bir boşlukta...</p>
-        </section>
+  <!-- Sabit arka plan: Güneş ve Ay -->
+  <div class="sky">
+    <div class="sun"></div>
+    <div class="moon"></div>
+  </div>
 
-        <section id="story">
-            <div class="sun"></div>
-            <div class="moon"></div>
-            <p class="text">Ay ve Güneş, ilk bakışta birbirinden uzak gibi görünse de...</p>
-        </section>
-    </div>
+  <!-- Hikaye Metinleri -->
+  <div class="container">
+    <section class="story-section">
+      <p>
+        Evrenin sonsuz karanlığında, yıldızların sessizce parladığı bir boşlukta, ışık ve gölge birbirine fısıldıyordu...
+      </p>
+    </section>
+    <section class="story-section">
+      <p>
+        Güneş, var oluşundan beri ışığını saçıyor, gezegenleri ısıtırken, Ay ise sessiz sadakatiyle gecelerin yıldızıydı.
+      </p>
+    </section>
+    <section class="story-section">
+      <p>
+        Ay, Güneş’in ışığında yeniden var olurken, kendi içsel ışıltısını da keşfediyordu. Her kelime, her adım yeni bir parıltıydı...
+      </p>
+    </section>
+    <!-- Dilerseniz daha fazla metin bölümü ekleyin -->
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
