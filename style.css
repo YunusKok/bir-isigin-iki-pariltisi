@@ -1,0 +1,45 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 50px;
+}
+
+.sun {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, yellow, orange);
+    border-radius: 50%;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: glow 5s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px yellow; }
+    to { box-shadow: 0 0 30px yellow; }
+}
+
+.moon {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, silver, gray);
+    border-radius: 50%;
+    position: fixed;
+    bottom: 10%;
+    right: 50%;
+    transform: translateX(50%);
+    animation: float 5s infinite alternate;
+}
+
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
+}
