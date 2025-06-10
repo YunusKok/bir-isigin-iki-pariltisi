@@ -1,4 +1,3 @@
-/* Fontları isteğiniz üzerine Times New Roman olarak bıraktım */
 @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
 
 :root {
@@ -94,7 +93,7 @@ body {
     transform: translate(-50%, -50%); 
     opacity: 0; 
     z-index: 10;
-    background: url(images/2k_earth_daymap.jpg);
+    background: url(https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg);
     background-size: 200% 100%;
     box-shadow: inset 15px 0 30px rgba(0,0,0,0.9), 0 0 25px rgba(120, 180, 255, 0.5);
     animation: spin-world 40s linear infinite;
@@ -136,54 +135,35 @@ body {
 
 
 /* ======================================= */
-/* === MODERN METİN ÇERÇEVESİ TASARIMI === */
+/* === YENİ: SADE VE MODERN METİN ÇERÇEVESİ === */
 /* ======================================= */
 .story-scene {
     position: relative;
     margin-bottom: 50vh;
-    border-radius: 15px; /* Kenarları yuvarlak tutalım */
+    border-radius: 10px;
     padding: 50px 40px;
-    /* Yarı şeffaf, hafif parlak bir arka plan */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    /* Arkadaki içeriği bulanıklaştıran "buzlu cam" efekti */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px); /* Safari desteği için */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Çok ince, belli belirsiz bir sınır */
-    transition: opacity 0.5s ease-in-out, border-color 0.5s ease-in-out;
-    overflow: hidden; /* Kenardan taşan animasyonlu border'ı gizlemek için */
+    /* Uzay boşluğu hissi veren koyu ve yarı şeffaf bir arka plan */
+    background-color: rgba(10, 15, 25, 0.6);
+    /* "Buzlu cam" efekti ile arkadaki yıldızları bulanıklaştır */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+    /* Çerçevenin kenarlarını belirginleştiren çok ince bir sınır */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* Sahne aktif olduğunda belirecek olan iç gölge (parlama) için başlangıç durumu */
+    box-shadow: inset 0 0 0px 0px rgba(220, 220, 255, 0);
+    
+    /* Tüm değişikliklerin yumuşak geçişi için */
+    transition: all 0.8s ease-in-out;
 }
 
-/* Çerçeveye hareketli ve parlayan bir sınır eklemek için pseudo-element kullanalım */
-.story-scene::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 200%; /* Animasyon için genişliği fazla tutalım */
-    height: 100%;
-    z-index: -1;
-    /* Aurora/Nebula renklerinde bir gradient */
-    background: linear-gradient(
-        115deg,
-        transparent,
-        rgba(0, 150, 255, 0.3),
-        rgba(220, 30, 180, 0.3),
-        rgba(255, 215, 0, 0.3),
-        transparent
-    );
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-    animation: aurora-border 6s linear infinite;
-}
-
-/* Sahne aktif olduğunda parlayan sınırı görünür yap */
-.story-scene.is-active::before {
-    opacity: 1;
-}
-
-/* Parıldayan sınır için animasyon */
-@keyframes aurora-border {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0%); }
+/* Sahne aktif olduğunda... */
+.story-scene.is-active {
+    /* Kenarlık rengini biraz daha belirgin yap */
+    border-color: rgba(255, 255, 255, 0.25);
+    /* Kenarlardan içeri doğru yumuşak, beyaz bir "yıldız ışığı" parlaması ekle */
+    box-shadow: inset 0 0 25px 3px rgba(220, 220, 255, 0.15);
 }
 
 .story-scene p {
@@ -192,8 +172,7 @@ body {
     font-size: 1.5rem;
     line-height: 1.7;
     text-align: center;
-    color: #e0e0e0; /* Rengi biraz daha yumuşatalım */
-    /* Okunurluğu artırmak için hafif bir metin gölgesi */
+    color: #e0e0e0;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
