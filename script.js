@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ======================================= */
     
     const storyData = [
+        // ... Sahneler 1-31 aynı kalıyor ...
         {
             text: `Evrenin sonsuz karanlığında, yıldızların sessizce parladığı bir boşlukta, ışık ve gölge birbirine fısıldıyordu.`,
             action: () => {}
@@ -185,42 +186,125 @@ document.addEventListener('DOMContentLoaded', () => {
             text: `Bir gün Ay, rüyasında Güneş’i gördü. İçinde bir oyunbazlık vardı ve şakasına onu tanımamazlıktan geldi. Güneş, Ay’ın ne yaptığını hemen anladı.`,
             action: () => { moon.classList.add('wistful'); sun.classList.add('surprised'); }
         },
+        
+        // GÜNCELLEME: 32. Sahne (index 31) - Dünya Araya Giriyor
         {
             text: `Sert bir şekilde ileri doğru atıldı, yakasına sıkıca yapıştı. Ama bu güç, Ay’ı incitmek için değil, onun kaçmasına izin vermemek içindi. Ay, bu sert dokunuşu hissettiğinde kalbi hızlandı.`,
-            action: () => { sun.classList.add('angry'); moon.classList.add('surprised'); sun.style.left = '48%'; moon.style.left = '52%'; sun.style.transform = 'translate(-50%, -50%) scale(1.1)'; }
+            action: () => {
+                sun.classList.add('angry');
+                moon.classList.add('surprised');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        // GÜNCELLEME: 33. Sahne (index 32) - Dünya Araya Giriyor
         {
             text: `Ayın bir yüzü hep karanlık olur diğer yüzü ise güneşe bakar ve güneşin ışığı sayesinde gözükür. Ama bazen araya ikisinin de dünyaları girer; ay için güneş, güneş için ay tutulması oluşur.`,
-            action: () => { sun.classList.add('sad'); moon.classList.add('sad'); sun.style.left = '30%'; moon.style.left = '70%'; }
+            action: () => {
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        // GÜNCELLEME: 34. Sahne (index 33) - Dünya Araya Giriyor
         {
             text: `Ay güneşin ışıltısını kaybettiğini, Güneş ayın yansımasının bulanıklaştığını düşünür. Güneş ışıltısını hiç kaybetmemiştir ama yansımasını göremediği için kaybettiğini düşünür. Ay ise Güneşin ondan ışığını esirgediğini düşünür.`,
-            action: () => { world.style.left = '50%'; world.style.opacity = '1'; sun.classList.add('sad'); moon.classList.add('sad'); }
+            action: () => {
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        // GÜNCELLEME: 35. Sahne (index 34) - Dünya Araya Giriyor
         {
             text: `Aslında problem ikisinin de dünyasıdır. Güneş, dünyasını etrafında döndürür. Ay ise dünyasının etrafında döner. Güneş, dünyasının hep aydınlık tarafını görmek ister. Ay ise dünyasının karanlıkta kalan yüzünü aydınlatmak ister. Bu yüzden ikisi de bazen ters düşer.`,
-            action: () => { sun.classList.add('sad'); moon.classList.add('sad'); }
+            action: () => {
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        // GÜNCELLEME: 36. Sahne (index 35) - Dünya Araya Giriyor
         {
             text: `Güneş dünyasının karanlıkta bıraktığı kısmını ayın aydınlatmasından sakınır ama unuttuğu bir şey var o da Ayın ışığının kaynağı kendisi. Bu yüzden bazen ışığını kesebilir ve dünyanın karanlık yüzü derin bir geceye bürünür.`,
-            action: () => { sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)'; }
+            action: () => {
+                sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        // GÜNCELLEME: 37. Sahne (index 36) - Dünya Araya Giriyor
         {
             text: `Ay ise o karanlıkta evrenin boşluğuna karışır. Işık kaynağını kaybedince adeta görünmez olur.`,
-            action: () => { moon.style.boxShadow = '0 0 5px #444'; moon.style.background = '#888'; }
+            action: () => {
+                moon.style.boxShadow = '0 0 5px #444';
+                moon.style.background = '#888';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        // GÜNCELLEME: 38. Sahne (index 37) - Dünya Araya Giriyor
         {
             text: `Ancak Ay, karanlıkta kaybolduğunu sansa da evrenin boşluğu aslında ona yeni bir ses kazandırır. Görünmez olduğunu düşündüğünde, içsel ışığını keşfetmeye başlar.`,
-            action: () => { moon.style.boxShadow = '0 0 10px #add8e6, 0 0 20px #4682b4'; moon.style.background = '#f0f8ff'; }
+            action: () => {
+                moon.style.boxShadow = '0 0 10px #add8e6, 0 0 20px #4682b4';
+                moon.style.background = '#f0f8ff';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        // GÜNCELLEME: 39. Sahne (index 38) - Dünya Araya Giriyor
         {
             text: `Ay, Güneş’in ışığını yansıtmayı görev bilmişti hep, ama o an fark eder ki, kendi varlığı, ışık olmadan da anlamlıdır. Güneş’in gözleri ondan uzak olsa bile, Ay evrenin sonsuz boşluğunda yankılanan kendi ışığını bulur.`,
-            action: () => { moon.classList.remove('sad'); moon.classList.add('happy'); moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff'; }
+            action: () => {
+                moon.classList.remove('sad');
+                moon.classList.add('happy');
+                moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff';
+                sun.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        // GÜNCELLEME: 40. Sahne (index 39) - Dünya Araya Giriyor
         {
             text: `Güneş ise, Ay’ı göremediği zaman gerçek parlaklığını sorgulamaya başlar. Hep dünyasını aydınlatmakla meşgulken, Ay’ın ona kattığı anlamı fark etmemiştir. Kendi ışığı güçlü olsa da, onun güzelliğini en iyi yansıtanın Ay olduğunu şimdi anlar.`,
-            action: () => { sun.classList.remove('sad'); sun.classList.add('wistful'); }
+            action: () => {
+                sun.classList.remove('sad');
+                sun.classList.add('wistful');
+                moon.classList.add('happy');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+            }
         },
+        
+        // ... Kalan sahneler normal akışına devam ediyor ...
         {
             text: `Ve Ay’ın kaybolduğunu düşündüğü o an, Güneş onun aslında karanlığın içinde yeni bir şekil aldığını görmeye başlar.`,
             action: () => { sun.classList.add('surprised'); }
@@ -237,17 +321,16 @@ document.addEventListener('DOMContentLoaded', () => {
             text: `Ve böylece, ikisi birbirlerine daha fazla kıymet verirler. Güneş, Ay’ı kaybetmekten korkmaz artık, çünkü onun karanlıkta da var olabildiğini bilir.`,
             action: () => { sun.classList.add('happy'); moon.classList.add('happy'); }
         },
-        { // GÜNCELLEME: Sarılma animasyonu için son sahne
+        {
             text: `Ay ise, Güneş’e muhtaç gibi hissetmez, çünkü kendini keşfetmiştir. Ama yine de, her dönüşte birbirlerine kavuşmayı isterler çünkü ışık, ancak gölge ile anlam kazanır.`,
             action: () => {
                 sun.classList.add('happy');
                 moon.classList.add('happy');
-                // Birbirlerine sarılmaları için pozisyonları ayarla
                 sun.style.left = '48%';
                 sun.style.transform = 'translate(-50%, -50%) rotate(-10deg)';
                 moon.style.left = '52%';
                 moon.style.transform = 'translate(-50%, -50%) rotate(10deg)';
-                moon.style.zIndex = '3'; // Ay'ın Güneş'in önüne gelmesi için
+                moon.style.zIndex = '3';
             }
         }
     ];
@@ -269,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         moon.style.transform = 'translate(-50%, -50%) rotate(0deg)';
         moon.style.background = 'var(--moon-color)';
         moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)';
-        moon.style.zIndex = '2'; // z-index'i sıfırla
+        moon.style.zIndex = '2';
         world.style.left = '-100px';
         world.style.opacity = '0';
     }
