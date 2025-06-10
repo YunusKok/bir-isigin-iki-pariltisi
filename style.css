@@ -137,116 +137,69 @@ body {
 }
 
 /* ======================================= */
-/* === PURE CSS ÇİÇEK SÜSLEMELERİ === */
+/* === GERÇEKÇİ KÖŞE SÜSLEMELERİ === */
 /* ======================================= */
 
-.flower-decoration {
+.story-scene {
+    position: relative; /* Süslemelerin doğru konumlanması için */
+    padding: 40px; /* Süslemelerin metne değmemesi için iç boşluk */
+}
+
+.corner-flower {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Çiçekler arası boşluk */
+    width: 100px;  /* Süsleme boyutu */
+    height: 100px; /* Süsleme boyutu */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0; /* Başlangıçta görünmez */
+    transition: opacity 1s ease-out;
 }
 
-.flower-decoration.top {
-    top: 15px;
+/* Süslemeleri köşelere konumlandırma */
+.corner-flower.top-left {
+    top: -15px;
+    left: -15px;
+}
+.corner-flower.top-right {
+    top: -15px;
+    right: -15px;
+    transform: scaleX(-1); /* Görüntüyü yatayda çevirerek simetri sağla */
+}
+.corner-flower.bottom-left {
+    bottom: -15px;
+    left: -15px;
+    transform: scaleY(-1); /* Görüntüyü dikeyde çevir */
+}
+.corner-flower.bottom-right {
+    bottom: -15px;
+    right: -15px;
+    transform: scaleX(-1) scaleY(-1); /* Görüntüyü hem dikey hem yatayda çevir */
 }
 
-.flower-decoration.bottom {
-    bottom: 15px;
+/* --- TEMA GÖRSELLERİ --- */
+/* ÖNEMLİ: Aşağıdaki url() kısımlarını kendi görsellerinizle değiştirin! */
+
+.story-scene.tulip-theme .corner-flower {
+    /* Örnek bir lale görseli, bu linki kendi dosya yolunuzla değiştirin */
+    background-image: url('https://pngimg.com/uploads/tulips/tulips_PNG33.png');
 }
 
-/* --- LALE (TULIP) TASARIMI --- */
-.lale {
-    position: relative;
-    width: 12px;
-    height: 20px;
-    background-color: #e74c3c; /* Lale rengi - Kırmızı */
-    border-radius: 50% 50% 0 0 / 80% 80% 0 0;
-    opacity: 0;
+.story-scene.lily-theme .corner-flower {
+     /* Örnek bir zambak görseli, bu linki kendi dosya yolunuzla değiştirin */
+    background-image: url('https://static.vecteezy.com/system/resources/previews/022/925/899/original/ai-generative-white-lily-flower-on-transparent-background-png.png');
 }
 
-.lale::before,
-.lale::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #c0392b; /* Lale yan yaprak rengi - Koyu Kırmızı */
-    border-radius: inherit;
-    top: 0;
-    left: 0;
-    z-index: -1;
+
+/* Sahne aktif olduğunda süslemelerin belirmesi */
+.story-scene.is-active .corner-flower {
+    opacity: 0.8;
 }
 
-.lale::before {
-    transform: translateX(-60%) rotate(-30deg);
-}
-
-.lale::after {
-    transform: translateX(60%) rotate(30deg);
-}
-
-/* --- ZAMBAK (LILY) TASARIMI --- */
-.zambak {
-    position: relative;
-    width: 18px;
-    height: 18px;
-    opacity: 0;
-}
-
-.zambak::before,
-.zambak::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #ecf0f1; /* Zambak rengi - Beyaz */
-    border-radius: 50% 0;
-    top: 0;
-    left: 0;
-}
-
-.zambak::before {
-    transform: rotate(-45deg);
-}
-
-.zambak::after {
-    transform: rotate(135deg);
-}
-
-.zambak .zambak-petal {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #bdc3c7; /* Zambak gölge rengi - Gri */
-    border-radius: 50% 0;
-    z-index: -1;
-}
-
-.zambak .zambak-petal:nth-of-type(1) {
-    transform: rotate(45deg);
-}
-
-.zambak .zambak-petal:nth-of-type(2) {
-    transform: rotate(225deg);
-}
-
-/* Çiçeklerin sahne aktif olunca belirmesi için animasyon */
-@keyframes bloom {
-    from {
-        opacity: 0;
-        transform: scale(0.2);
-    }
-    to {
-        opacity: 0.8;
-        transform: scale(1);
-    }
-}
+/* Farklı köşelerin farklı gecikmelerle belirmesi */
+.story-scene.is-active .corner-flower.top-left { transition-delay: 0.2s; }
+.story-scene.is-active .corner-flower.top-right { transition-delay: 0.4s; }
+.story-scene.is-active .corner-flower.bottom-left { transition-delay: 0.6s; }
+.story-scene.is-active .corner-flower.bottom-right { transition-delay: 0.8s; }
 
 .story-scene.is-active .flower-decoration div {
     animation-name: bloom;

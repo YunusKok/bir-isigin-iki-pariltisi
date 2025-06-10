@@ -144,68 +144,34 @@ document.addEventListener('DOMContentLoaded', () => {
         world.style.opacity = '0';
     }
 
-    // DÜZELTME: Bu fonksiyon zambaklar için gerekli iç div'leri de oluşturacak şekilde güncellendi.
     function populateStory() {
-        storyData.forEach((scene, index) => {
-            const sceneEl = document.createElement('div');
-            sceneEl.classList.add('story-scene');
-            sceneEl.setAttribute('data-scene-index', index);
+    storyData.forEach((scene, index) => {
+        const sceneEl = document.createElement('div');
+        sceneEl.classList.add('story-scene');
+        sceneEl.setAttribute('data-scene-index', index);
 
-            const topDecoration = document.createElement('div');
-            topDecoration.classList.add('flower-decoration', 'top');
+        // Sahne indeksine göre tema sınıfı ata
+        if (index % 2 === 0) {
+            sceneEl.classList.add('tulip-theme'); // Çift numaralı sahneler lale temalı
+        } else {
+            sceneEl.classList.add('lily-theme'); // Tek numaralı sahneler zambak temalı
+        }
 
-            const bottomDecoration = document.createElement('div');
-            bottomDecoration.classList.add('flower-decoration', 'bottom');
-
-            for (let i = 0; i < 15; i++) {
-                const flower = document.createElement('div');
-                if (index % 2 === 0) {
-                    flower.classList.add('lale');
-                } else {
-                    flower.classList.add('zambak');
-                    // Zambak için gerekli olan iç yaprakları ekle
-                    const petal1 = document.createElement('div');
-                    petal1.classList.add('zambak-petal');
-                    const petal2 = document.createElement('div');
-                    petal2.classList.add('zambak-petal');
-                    flower.appendChild(petal1);
-                    flower.appendChild(petal2);
-                }
-                topDecoration.appendChild(flower);
-                bottomDecoration.appendChild(flower.cloneNode(true));
-            }
-
-            const paragraph = document.createElement('p');
-            paragraph.innerHTML = scene.text;
-
-            sceneEl.appendChild(topDecoration);
-            sceneEl.appendChild(paragraph);
-            sceneEl.appendChild(bottomDecoration);
-            
-            storyContainer.appendChild(sceneEl);
+        // Dört köşe için süsleme div'lerini oluştur ve ekle
+        const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+        corners.forEach(corner => {
+            const cornerEl = document.createElement('div');
+            cornerEl.classList.add('corner-flower', corner);
+            sceneEl.appendChild(cornerEl);
         });
-    }
 
-    const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.6
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const activeScene = entry.target;
-                const sceneIndex = parseInt(activeScene.getAttribute('data-scene-index'));
-                
-                document.querySelectorAll('.story-scene').forEach(el => el.classList.remove('is-active'));
-                activeScene.classList.add('is-active');
-
-                resetAllStates();
-                storyData[sceneIndex].action();
-            }
-        });
-    }, options);
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = scene.text;
+        sceneEl.appendChild(paragraph);
+        
+        storyContainer.appendChild(sceneEl);
+    });
+}
 
     populateStory();
     const scenes = document.querySelectorAll('.story-scene');
