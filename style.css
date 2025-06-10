@@ -83,8 +83,8 @@ body {
 .sad .mouth { height: 20%; top: 65%; border-radius: 70px 70px 0 0; background: transparent; border-top: 5px solid #2c2c2c; }
 .surprised .mouth { width: 20%; height: 20%; border-radius: 50%; background: #2c2c2c; }
 .angry .eye { top: 30%; height: 5%; border-radius: 0; background: #2c2c2c; }
-#sun.angry .eye.left { transform: rotate(20deg); }
-#sun.angry .eye.right { transform: rotate(-20deg); }
+#sun.angry .eye.left, #moon.angry .eye.left { transform: rotate(20deg); }
+#sun.angry .eye.right, #moon.angry .eye.right { transform: rotate(-20deg); }
 .wistful .eye { top: 40%; height: 5%; border-radius: 20px 20px 0 0; background: transparent; border-top: 3px solid #2c2c2c;}
 .wistful .mouth {width: 25%; height: 2px; top: 65%;}
 
@@ -107,7 +107,7 @@ body {
     backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     opacity: 0.7;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, border-color 0.5s ease-in-out;
 }
 
 .story-scene.is-active {
