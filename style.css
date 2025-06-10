@@ -13,9 +13,9 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
     background-color: #000;
     color: var(--text-color);
+    cursor: default; /* İmleç normalde varsayılan olsun */
 }
 
 /* ======================================= */
@@ -29,16 +29,43 @@ body {
     height: 100%;
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     z-index: 1;
+    overflow: hidden; /* Yıldızların taşmasını engelle */
 }
 
-#stars {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: transparent url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
-    animation: move-twink-back 200s linear infinite;
+/* YENİ: Göz Kırpan Yıldızlar Stili */
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 4s infinite;
 }
-@keyframes move-twink-back {
-    from {background-position:0 0;} to {background-position:-10000px 5000px;}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
 }
+
+/* YENİ: İmleç Takip Efekti Stili */
+.trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    pointer-events: none; /* İmlecin kendi izini yakalamasını engelle */
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    animation: fadeOut 0.8s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
 
 /* ======================================= */
 /* === Gök Cisimleri ve Yüz İfadeleri === */
@@ -50,43 +77,30 @@ body {
     will-change: transform, left, top, box-shadow, background-color;
     z-index: 2;
 }
-
 #sun {
     width: 150px; height: 150px; background: var(--sun-color);
     top: 50%; left: 20%; transform: translate(-50%, -50%);
     box-shadow: 0 0 50px var(--sun-color), 0 0 100px var(--sun-glow1), 0 0 150px var(--sun-glow2);
 }
-
 #moon {
     width: 60px; height: 60px; background: var(--moon-color);
     top: 50%; left: 80%; transform: translate(-50%, -50%);
     box-shadow: 0 0 15px #FFFFFF, 0 0 30px var(--moon-glow);
-    transition: all var(--transition-speed) ease-in-out, animation 0.1s;
 }
-
 #world {
     width: 70px; height: 70px;
     background: radial-gradient(circle, #3463d8, #0e1e3a);
     top: 50%; left: -100px; transform: translate(-50%, -50%); opacity: 0; z-index: 10;
 }
-
-.face { position: relative; width: 100%; height: 100%; }
-.eye {
-    position: absolute; top: 35%; width: 15%; height: 15%; background: #2c2c2c; border-radius: 50%;
-    transition: all calc(var(--transition-speed) / 2) ease-in-out;
-}
+.face { position: relative; width: 100%; height: 100%; z-index: 5; }
+.eye { position: absolute; top: 35%; width: 15%; height: 15%; background: #2c2c2c; border-radius: 50%; transition: all calc(var(--transition-speed) / 2) ease-in-out; }
 .eye.left { left: 25%; }
 .eye.right { right: 25%; }
-.mouth {
-    position: absolute; top: 60%; left: 50%; transform: translateX(-50%); width: 40%; height: 5%;
-    background: #2c2c2c; border-radius: 2px;
-    transition: all calc(var(--transition-speed) / 2) ease-in-out;
-}
-
+.mouth { position: absolute; top: 60%; left: 50%; transform: translateX(-50%); width: 40%; height: 5%; background: #2c2c2c; border-radius: 2px; transition: all calc(var(--transition-speed) / 2) ease-in-out; }
 .happy .mouth { height: 20%; top: 55%; border-radius: 0 0 70px 70px; background: transparent; border-bottom: 5px solid #2c2c2c; }
 .sad .mouth { height: 20%; top: 65%; border-radius: 70px 70px 0 0; background: transparent; border-top: 5px solid #2c2c2c; }
-.surprised .mouth { width: 20%; height: 20%; border-radius: 50%; background: #2c2c2c; }
-.angry .eye { top: 30%; height: 5%; border-radius: 0; background: #2c2c2c; }
+.surprised .mouth { width: 20%; height: 20%; border-radius: 50%; }
+.angry .eye { top: 30%; height: 5%; border-radius: 0; }
 #sun.angry .eye.left, #moon.angry .eye.left { transform: rotate(20deg); }
 #sun.angry .eye.right, #moon.angry .eye.right { transform: rotate(-20deg); }
 .wistful .eye { top: 40%; height: 5%; border-radius: 20px 20px 0 0; background: transparent; border-top: 3px solid #2c2c2c;}
@@ -103,159 +117,101 @@ body {
     margin: 0 auto;
     padding-bottom: 100vh;
 }
-
-.intro-title {
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    height: 100vh;
-    text-align: center;
-    width: 100%;
-}
+.intro-title { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; width: 100%; }
 .intro-title h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 1rem; }
 .intro-title p { font-size: 1.2rem; }
 .intro-title span { font-size: 3rem; margin-top: 2rem; animation: bounce 2s infinite; }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-30px);} 60% {transform: translateY(-15px);} }
 
-
-.story-scene {
-    position: relative;
-    margin-bottom: 50vh;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
-    backdrop-filter: blur(3px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    opacity: 0.7;
-    transition: opacity 0.5s ease-in-out, border-color 0.5s ease-in-out;
-    padding: 60px 40px;
-}
-
-.story-scene.is-active {
-    opacity: 1;
-    border-color: rgba(255, 215, 0, 0.5);
-}
-
-.story-scene p {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.3rem;
-    line-height: 1.7;
-    text-align: center;
-}
+.story-scene { position: relative; margin-bottom: 50vh; background: rgba(0, 0, 0, 0.4); border-radius: 15px; backdrop-filter: blur(3px); border: 1px solid rgba(255, 255, 255, 0.1); opacity: 0.7; transition: opacity 0.5s ease-in-out, border-color 0.5s ease-in-out; padding: 60px 40px; }
+.story-scene.is-active { opacity: 1; border-color: rgba(255, 215, 0, 0.5); }
+.story-scene p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; line-height: 1.7; text-align: center; }
 
 /* ======================================= */
-/* === GELİŞMİŞ SAF CSS ÇİÇEK SÜSLEMELERİ === */
+/* === Çiçek Süslemeleri === */
 /* ======================================= */
-
-.flower-decoration {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-}
-
+.flower-decoration { position: absolute; left: 50%; transform: translateX(-50%); width: 90%; height: 40px; display: flex; justify-content: center; align-items: center; gap: 25px; }
 .flower-decoration.top { top: 10px; }
 .flower-decoration.bottom { bottom: 10px; }
-
-.lale {
-    position: relative;
-    width: 18px;
-    height: 25px;
-    background: linear-gradient(to bottom, #e74c3c, #c0392b);
-    border-radius: 50% 50% 3% 3% / 85% 85% 15% 15%;
-    opacity: 0;
-    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2);
-}
-
-.lale::before, .lale::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #c0392b, #962d22);
-    border-radius: inherit;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2);
-}
-
+/* ... (Lale ve Zambak stilleri aynı kalıyor) ... */
+.lale { position: relative; width: 18px; height: 25px; background: linear-gradient(to bottom, #e74c3c, #c0392b); border-radius: 50% 50% 3% 3% / 85% 85% 15% 15%; opacity: 0; box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2); }
+.lale::before, .lale::after { content: ''; position: absolute; width: 100%; height: 100%; background: linear-gradient(to bottom, #c0392b, #962d22); border-radius: inherit; top: 0; left: 0; z-index: -1; box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2); }
 .lale::before { transform: translateX(-55%) rotate(-25deg); }
 .lale::after { transform: translateX(55%) rotate(25deg); }
-
-.zambak {
-    position: relative;
-    width: 25px;
-    height: 25px;
-    opacity: 0;
-    transform: rotate(15deg); 
-}
-
-.zambak::before, .zambak::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, #fff, #e8e8e8);
-    border-radius: 50% 0;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
+.zambak { position: relative; width: 25px; height: 25px; opacity: 0; transform: rotate(15deg); }
+.zambak::before, .zambak::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #fff, #e8e8e8); border-radius: 50% 0; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
 .zambak::before { transform: rotate(-45deg) scale(1.1); }
 .zambak::after { transform: rotate(135deg) scale(1.1); }
-.zambak::after {
-    background: radial-gradient(circle, #f1c40f 2px, transparent 3px), 
-                radial-gradient(circle, #fff, #e8e8e8);
-}
-
-@keyframes bloom {
-    0% { opacity: 0; transform: scale(0.2); }
-    60% { transform: scale(1.1); }
-    100% { opacity: 0.9; transform: scale(1); }
-}
-
-.story-scene.is-active .flower-decoration div {
-    animation-name: bloom;
-    animation-duration: 1.2s;
-    animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
-}
-
-.story-scene.is-active .flower-decoration div:nth-child(1) { animation-delay: 0.1s; }
-.story-scene.is-active .flower-decoration div:nth-child(2) { animation-delay: 0.2s; }
-.story-scene.is-active .flower-decoration div:nth-child(3) { animation-delay: 0.3s; }
-.story-scene.is-active .flower-decoration div:nth-child(4) { animation-delay: 0.4s; }
-.story-scene.is-active .flower-decoration div:nth-child(5) { animation-delay: 0.5s; }
-.story-scene.is-active .flower-decoration div:nth-child(6) { animation-delay: 0.6s; }
-.story-scene.is-active .flower-decoration div:nth-child(7) { animation-delay: 0.7s; }
-.story-scene.is-active .flower-decoration div:nth-child(8) { animation-delay: 0.15s; }
-.story-scene.is-active .flower-decoration div:nth-child(9) { animation-delay: 0.25s; }
-.story-scene.is-active .flower-decoration div:nth-child(10) { animation-delay: 0.35s; }
-.story-scene.is-active .flower-decoration div:nth-child(11) { animation-delay: 0.45s; }
-.story-scene.is-active .flower-decoration div:nth-child(12) { animation-delay: 0.55s; }
-.story-scene.is-active .flower-decoration div:nth-child(13) { animation-delay: 0.65s; }
-.story-scene.is-active .flower-decoration div:nth-child(14) { animation-delay: 0.75s; }
-.story-scene.is-active .flower-decoration div:nth-child(15) { animation-delay: 0.8s; }
+.zambak::after { background: radial-gradient(circle, #f1c40f 2px, transparent 3px), radial-gradient(circle, #fff, #e8e8e8); }
+@keyframes bloom { 0% { opacity: 0; transform: scale(0.2); } 60% { transform: scale(1.1); } 100% { opacity: 0.9; transform: scale(1); } }
+.story-scene.is-active .flower-decoration div { animation: bloom 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards; }
+.story-scene.is-active .flower-decoration div:nth-child(1) { animation-delay: 0.1s; } .story-scene.is-active .flower-decoration div:nth-child(2) { animation-delay: 0.2s; } .story-scene.is-active .flower-decoration div:nth-child(3) { animation-delay: 0.3s; } .story-scene.is-active .flower-decoration div:nth-child(4) { animation-delay: 0.4s; } .story-scene.is-active .flower-decoration div:nth-child(5) { animation-delay: 0.5s; } .story-scene.is-active .flower-decoration div:nth-child(6) { animation-delay: 0.6s; } .story-scene.is-active .flower-decoration div:nth-child(7) { animation-delay: 0.7s; } .story-scene.is-active .flower-decoration div:nth-child(8) { animation-delay: 0.15s; } .story-scene.is-active .flower-decoration div:nth-child(9) { animation-delay: 0.25s; } .story-scene.is-active .flower-decoration div:nth-child(10) { animation-delay: 0.35s; } .story-scene.is-active .flower-decoration div:nth-child(11) { animation-delay: 0.45s; } .story-scene.is-active .flower-decoration div:nth-child(12) { animation-delay: 0.55s; } .story-scene.is-active .flower-decoration div:nth-child(13) { animation-delay: 0.65s; } .story-scene.is-active .flower-decoration div:nth-child(14) { animation-delay: 0.75s; } .story-scene.is-active .flower-decoration div:nth-child(15) { animation-delay: 0.8s; }
 
 /* ======================================= */
-/* === GÜNEŞ VE AY HOVER EFEKTLERİ === */
+/* === HOVER EFEKTLERİ === */
 /* ======================================= */
 #sun:hover {
     box-shadow: 0 0 70px var(--sun-color), 0 0 140px var(--sun-glow1), 0 0 200px var(--sun-glow2);
     transform: translate(-50%, -50%) scale(1.05);
 }
 
-@keyframes tickle {
-    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-    25% { transform: translate(-48%, -52%) rotate(3deg); }
-    75% { transform: translate(-52%, -48%) rotate(-3deg); }
+/* YENİ: Ay'ın Kalp Uzatma Stilleri */
+#moon .hand, #moon .heart {
+    position: absolute;
+    background-color: #444;
+    border-radius: 10px;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+    z-index: 1;
+}
+#moon .hand { width: 8px; height: 25px; top: 50%; }
+#moon .hand.left { left: 10%; }
+#moon .hand.right { right: 10%; }
+#moon .heart {
+    width: 20px; height: 18px;
+    top: 30%; left: 50%;
+    transform: translateX(-50%) scale(0);
+    background-color: #e74c3c;
+    z-index: 20;
+}
+#moon .heart::before, #moon .heart::after {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    background-color: inherit; border-radius: 50%;
+}
+#moon .heart::before { top: -10px; left: 0; }
+#moon .heart::after { top: 0; left: 10px; }
+
+/* İmleç Ay'ın üzerine gelince olacaklar */
+#moon:hover .hand { opacity: 1; }
+#moon:hover .hand.left { transform: rotate(-45deg) translate(-10px, -15px); }
+#moon:hover .hand.right { transform: rotate(45deg) translate(10px, -15px); }
+#moon:hover .heart { opacity: 1; transform: translateX(-50%) translateY(-35px) scale(1); transition-delay: 0.2s; }
+#moon:hover .face { transform: translateY(5px); } /* Yüzü biraz aşağı kaydırarak tepki verdirme */
+
+/* ======================================= */
+/* === FİNAL YAZISI VE IŞILTISI === */
+/* ======================================= */
+.final-quote {
+    position: relative;
+    padding: 100px 20px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #a7a7a7;
+    z-index: 30;
 }
 
-#moon:hover {
-    animation: tickle 0.4s infinite ease-in-out;
+.final-quote .sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle-up 1.5s ease-in-out infinite;
+}
+@keyframes sparkle-up {
+    0% { opacity: 0; transform: translateY(0) scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: translateY(-40px) scale(0); }
 }
