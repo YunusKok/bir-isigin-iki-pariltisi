@@ -187,7 +187,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, options);
 
-    populateStory();
-    const scenes = document.querySelectorAll('.story-scene');
-    scenes.forEach(scene => observer.observe(scene));
+    function populateStory() {
+    storyData.forEach((scene, index) => {
+        const sceneEl = document.createElement('div');
+        sceneEl.classList.add('story-scene');
+        sceneEl.setAttribute('data-scene-index', index);
+
+        // Üst ve alt dekorasyon konteynerlarını oluştur
+        const topDecoration = document.createElement('div');
+        topDecoration.classList.add('flower-decoration', 'top');
+
+        const bottomDecoration = document.createElement('div');
+        bottomDecoration.classList.add('flower-decoration', 'bottom');
+
+        // Çiçekleri oluştur ve dekorasyon konteynerlarına ekle
+        for (let i = 0; i < 15; i++) {
+            const flower = document.createElement('div');
+            // Sahne indeksine göre lale veya zambak sınıfı ekle
+            if (index % 2 === 0) {
+                flower.classList.add('lale');
+            } else {
+                flower.classList.add('zambak');
+            }
+            // Oluşturulan çiçeği hem üste hem alta ekle (klonlayarak)
+            topDecoration.appendChild(flower);
+            bottomDecoration.appendChild(flower.cloneNode(true));
+        }
+
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = scene.text;
+
+        // Elementleri sahneye doğru sırada ekle
+        sceneEl.appendChild(topDecoration);
+        sceneEl.appendChild(paragraph);
+        sceneEl.appendChild(bottomDecoration);
+        
+        storyContainer.appendChild(sceneEl);
+    });
+}
 });
