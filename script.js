@@ -1,146 +1,159 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elementleri
     const sun = document.getElementById('sun');
     const moon = document.getElementById('moon');
     const world = document.getElementById('world');
-    const storyText = document.getElementById('story-text');
-    const nextBtn = document.getElementById('next-btn');
-    const prevBtn = document.getElementById('prev-btn');
+    const storyContainer = document.getElementById('story-scroll-container');
 
-    // Hikayeyi ve ilgili animasyon fonksiyonlarını bir dizi içinde saklıyoruz.
+    // HİKAYENİN TAMAMI SAHNELERE BÖLÜNDÜ
     // Her bir "scene" (sahne), metni ve o metinle tetiklenecek "action" (eylem) fonksiyonunu içerir.
-    const story = [
-        {
-            text: "Evrenin sonsuz karanlığında, yıldızların sessizce parladığı bir boşlukta, ışık ve gölge birbirine fısıldıyordu. Ay ve Güneş, ilk bakışta birbirinden uzak, ayrı varlıklardı.",
+    const storyData = [
+        { // Sahne 0: Başlangıç
+            text: "Evrenin sonsuz karanlığında... Ay ve Güneş, ilk bakışta birbirinden uzak, ayrı varlıklardı. Biri geceyi süslerken, diğeri gündüzü aydınlatıyordu. ",
             action: () => {
-                sun.style.left = '20%';
-                moon.style.left = '80%';
+                resetFaces();
+                sun.style.left = '20%'; sun.style.top = '50%';
+                moon.style.left = '80%'; moon.style.top = '50%';
                 moon.classList.remove('moon-blushing');
             }
         },
-        {
-            text: "Güneş ise bu değişimi fark ettiğinde şaşırdı. Ay her zaman dingin, uzak ve kendi halinde olmuştu. Ama şimdi, ışığında bir kırılma görüyordu. Ay’ın enerjisi değişmişti; ona doğru akıyordu...",
+        { // Sahne 1: Ay'ın Arzusu
+            text: "Ancak bir şey değişmeye başladı: Ay artık sadece ışık taşıyan bir varlık olmaktan öteye geçmek istiyordu... Güneş’in yanına gitmek, ona gerçekten ulaşmak istiyordu. ",
             action: () => {
-                moon.classList.add('moon-flickering'); // Ay'ın ışığında kırılma efekti
-                moon.style.left = '75%'; // Ay biraz yaklaşır
+                resetFaces();
+                moon.classList.add('wistful'); // Ay'ın yüzü arzulu/düşünceli olur
+                moon.style.left = '75%';
             }
         },
-        {
-            text: "Ay, yörüngesini değiştirdi, Güneş’e doğru ilerlemeye başladı. Yaklaşırken, yüzeyi yavaş yavaş kızardı; Güneş’in etkileyiciliği karşısında kendisini durduramıyordu.",
+        { // Sahne 2: Güneş'in Fark Edişi
+            text: "Güneş ise bu değişimi fark ettiğinde şaşırdı. Ay her zaman dingin, uzak ve kendi halinde olmuştu. Ama şimdi, ışığında bir kırılma görüyordu. Ay’ın enerjisi ona doğru akıyordu... ",
             action: () => {
-                moon.classList.remove('moon-flickering');
-                moon.classList.add('moon-blushing'); // Ay'ın yüzeyi kızarır
-                moon.style.left = '60%'; // Ay daha da yaklaşır
+                resetFaces();
+                sun.classList.add('surprised'); // Güneş şaşırır
+                moon.classList.remove('wistful');
+                moon.style.left = '70%';
             }
         },
-        {
-            text: "Güneş, güçlüydü, ihtişamlıydı... Ama gün içinde, bazen kendisini bile şaşırtan küçük sakarlıklar yapıyordu. Sinirlenip kendi sıcaklığını daha da arttırıyordu.",
+        { // Sahne 3: Yaklaşma ve Dönüşüm
+            text: "Ay, yörüngesini değiştirdi, Güneş’e doğru ilerlemeye başladı. Yaklaşırken, yüzeyi yavaş yavaş kızardı. İlk defa, ışığın yalnızca bir parçası olmadığını, onun içinde yaşayan bir duyguya dönüştüğünü hissediyordu. ",
             action: () => {
-                sun.classList.add('sun-pulsing'); // Güneş'in sıcaklığı artar gibi titreşir
+                resetFaces();
+                sun.classList.add('happy');
+                moon.style.left = '60%';
+                moon.style.background = '#FFE4E1';
+                moon.style.boxShadow = '0 0 20px #FFC0CB, 0 0 40px #FF69B4';
             }
         },
-        {
-            text: "Ay ise onun bu haline hayranlıkla baktı ve fısıldadı: 'Biliyor musun, tam olarak böyle olduğun için seni seviyorum. Küçük sakarlıkların seni daha tatlı yapıyor.'",
+        { // Sahne 4: Güneş'in Sakarlıkları ve Ay'ın Sevgisi
+            text: "Ama Güneş, bazen kendisini bile şaşırtan küçük sakarlıklar yapıyordu. Ay ise onun bu haline hayranlıkla baktı ve fısıldadı: 'Biliyor musun, tam olarak böyle olduğun için seni seviyorum. Seni sadece ışığın için değil, içindeki heyecanlı çocukla seviyorum.' ",
             action: () => {
-                sun.classList.remove('sun-pulsing'); // Güneş sakinleşir
+                resetFaces();
+                sun.classList.add('surprised'); // Sakarlıktan şaşkın
+                moon.classList.add('happy');    // Ay'ın sevecen gülümsemesi
+                sun.style.left = '55%'; // Birbirlerine daha yakınlar
+                moon.style.left = '45%';
+                moon.style.transform = 'translate(-50%, -50%) rotate(-15deg)'; // Ay sevecen bir şekilde eğilir
             }
         },
-        {
-            text: "Güneş bunu fark ettiğinde, içinde kıskanç bir alev parladı. Gezegenlerin gökyüzünde Ay’a baktığını gördü. Ay, yalnızca Güneş’e ait değil miydi?",
+        { // Sahne 5: Kıskançlık
+            text: "Güneş, gezegenlerin Ay’a baktığını gördü. İçinde kıskanç bir alev parladı. Ay, yalnızca Güneş’e ait değil miydi? Neden başkaları da onun yumuşak parlak gümüş rengini hayranlıkla izliyordu? ",
             action: () => {
-                sun.classList.add('sun-jealous-flash'); // Güneş kıskançlıktan parlar
-                moon.style.left = '65%'; // Ay biraz uzaklaşır gibi olur
+                resetFaces();
+                sun.classList.add('angry'); // Güneş sinirlenir
+                moon.classList.add('surprised');
+                sun.style.boxShadow = '0 0 70px #FF4500, 0 0 140px #FF0000, 0 0 200px #FFD700';
             }
         },
-        {
-            text: "Ay, rüyasında Güneş'in karşısındaydı. Güneş sert bir şekilde ileri doğru atıldı, yakasına sıkıca yapıştı. Bu güç, Ay’ı incitmek için değil, onun kaçmasına izin vermemek içindi.",
+        { // Sahne 6: Tutulma
+            text: "Ama bazen araya ikisinin de dünyaları girer; ay için güneş, güneş için ay tutulması oluşur. Ay, Güneşin ondan ışığını esirgediğini düşünür. Aslında problem ikisinin de dünyasıdır. ",
             action: () => {
-                sun.classList.remove('sun-jealous-flash');
-                sun.style.left = '45%'; // Güneş aniden yaklaşır
-                moon.style.left = '55%'; // Ay ve Güneş çok yakınlaşır
-            }
-        },
-        {
-            text: "Ama bazen araya ikisinin de dünyaları girer; ay için güneş, güneş için ay tutulması oluşur. Güneş ışıltısını hiç kaybetmemiştir ama yansımasını göremediği için kaybettiğini düşünür.",
-            action: () => {
-                // Dünya araya girer (tutulma)
+                resetFaces();
+                sun.classList.add('sad');
+                moon.classList.add('sad');
                 sun.style.left = '20%';
                 moon.style.left = '80%';
-                world.style.left = '65%';
+                world.style.left = '50%'; // Dünya araya girer
                 world.style.opacity = '1';
-                moon.style.boxShadow = '0 0 5px #444'; // Ay'ın ışığı söner
+                moon.style.boxShadow = '0 0 5px #444';
                 moon.style.background = '#888';
+                moon.style.transform = 'translate(-50%, -50%) rotate(0deg)';
             }
         },
-        {
-            text: "Ancak Ay, karanlıkta kaybolduğunu sansa da... kendi içsel ışığını keşfetmeye başlar. Güneş’in gözleri ondan uzak olsa bile, Ay evrenin sonsuz boşluğunda yankılanan kendi ışığını bulur.",
+        { // Sahne 7: İçsel Işığın Keşfi
+            text: "Ancak Ay, karanlıkta kaybolduğunu sansa da, içsel ışığını keşfetmeye başlar. Ay artık sadece Güneş’in ışığını taşıyan bir varlık değil, kendi içsel ışığını da bilen bir yıldızdır. ",
             action: () => {
-                 // Ay kendi ışığını bulur
-                moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4'; // Mavimsi, içsel bir ışık
+                moon.classList.remove('sad');
+                moon.classList.add('happy'); // Kendini bulmanın mutluluğu
+                moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff';
                 moon.style.background = '#f0f8ff';
             }
         },
-        {
-            text: "Sonra, evrenin döngüsü devam eder. Tutulma sona erer ve Ay tekrar Güneş’in ışığını kucaklar. Artık birbirlerine daha fazla kıymet verirler.",
+        { // Sahne 8: Yeniden Kavuşma ve Sonuç
+            text: "Tutulma sona erer ve Ay tekrar Güneş’in ışığını kucaklar. Artık birbirlerine daha fazla kıymet verirler. Çünkü gerçek aşk, sadece dokunmaktan ibaret değildi; birlikte var olmak, birbirini tamamlamak ve hiçbir zaman kaybolmamak demekti. ",
             action: () => {
-                // Her şey normale döner ama bağları daha güçlüdür
+                resetFaces();
+                sun.classList.add('happy');
+                moon.classList.add('happy');
                 world.style.left = '120%'; // Dünya sahneden çıkar
                 world.style.opacity = '0';
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                moon.classList.remove('moon-blushing');
-                moon.style.background = '#E0E0E0'; // Normal rengine döner
-                moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px #B0C4DE, 0 0 40px #add8e6'; // Hem Güneş'ten hem de kendinden bir parıltı
-            }
-        },
-         {
-            text: "Çünkü gerçek aşk, sadece dokunmaktan ibaret değildi; birlikte var olmak, birbirini tamamlamak ve hiçbir zaman kaybolmamak demekti. Işıkları hep iç içeydi.",
-            action: () => {
-                // Son sahne, birbirlerine yakın ve uyum içinde
                 sun.style.left = '40%';
                 moon.style.left = '60%';
+                moon.style.background = '#E0E0E0';
+                moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)';
+                moon.style.transform = 'translate(-50%, -50%) rotate(15deg)';
             }
         }
     ];
 
-    let currentSceneIndex = 0;
-
-    function resetStates() {
-        // Her sahne değişiminden önce animasyon sınıflarını temizle
-        sun.className = '';
-        moon.className = '';
+    // Hikaye metnini HTML'e dinamik olarak ekle
+    function populateStory() {
+        storyData.forEach((scene, index) => {
+            const sceneEl = document.createElement('div');
+            sceneEl.classList.add('story-scene');
+            sceneEl.setAttribute('data-scene-index', index);
+            
+            const paragraph = document.createElement('p');
+            paragraph.innerHTML = scene.text; // innerHTML kullanarak cite etiketlerini koruyoruz
+            sceneEl.appendChild(paragraph);
+            
+            storyContainer.appendChild(sceneEl);
+        });
     }
 
-    function updateScene() {
-        resetStates();
-
-        const scene = story[currentSceneIndex];
-        storyText.style.opacity = '0'; // Metni yumuşak geçiş için gizle
-
-        setTimeout(() => {
-            storyText.innerHTML = scene.text;
-            scene.action();
-            storyText.style.opacity = '1'; // Metni göster
-        }, 500); // 0.5 saniye sonra metni ve animasyonu başlat
-
-        // Butonların durumunu güncelle
-        prevBtn.disabled = currentSceneIndex === 0;
-        nextBtn.disabled = currentSceneIndex === story.length - 1;
+    function resetFaces() {
+        const expressions = ['happy', 'sad', 'surprised', 'angry', 'wistful'];
+        sun.classList.remove(...expressions);
+        moon.classList.remove(...expressions);
+        sun.style.boxShadow = `0 0 50px var(--sun-color), 0 0 100px var(--sun-glow1), 0 0 150px var(--sun-glow2)`;
+        moon.style.transform = 'translate(-50%, -50%) rotate(0deg)';
     }
 
-    nextBtn.addEventListener('click', () => {
-        if (currentSceneIndex < story.length - 1) {
-            currentSceneIndex++;
-            updateScene();
-        }
-    });
+    // Intersection Observer Kurulumu
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.6 // Sahnenin %60'ı görününce tetiklenir
+    };
 
-    prevBtn.addEventListener('click', () => {
-        if (currentSceneIndex > 0) {
-            currentSceneIndex--;
-            updateScene();
-        }
-    });
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const activeScene = entry.target;
+                const sceneIndex = parseInt(activeScene.getAttribute('data-scene-index'));
+                
+                // Diğer sahnelerden aktif sınıfını kaldır
+                document.querySelectorAll('.story-scene').forEach(el => el.classList.remove('is-active'));
+                // Mevcut sahneye aktif sınıfını ekle
+                activeScene.classList.add('is-active');
 
-    // Sayfa yüklendiğinde ilk sahneyi göster
-    updateScene();
+                // İlgili animasyonu çalıştır
+                storyData[sceneIndex].action();
+            }
+        });
+    }, options);
+
+    // Başlangıç
+    populateStory();
+    const scenes = document.querySelectorAll('.story-scene');
+    scenes.forEach(scene => observer.observe(scene));
 });

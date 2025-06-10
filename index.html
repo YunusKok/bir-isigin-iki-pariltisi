@@ -3,24 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bir Işığın İki Parıltısı</title>
+    <title>Bir Işığın İki Parıltısı - İnteraktif Hikaye</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="universe">
         <div id="stars"></div>
-        <div id="sun"></div>
-        <div id="moon"></div>
+        <div id="sun">
+            <div class="face">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+        <div id="moon">
+            <div class="face">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
         <div id="world"></div>
     </div>
 
-    <div id="story-container">
-        <p id="story-text"></p>
-        <div id="navigation">
-            <button id="prev-btn" disabled>Geri</button>
-            <button id="next-btn">İleri</button>
+    <div id="story-scroll-container">
+        <div class="intro-title">
+            <h1>Bir Işığın İki Parıltısı</h1>
+            <p>Deneyimi başlatmak için aşağı kaydırın</p>
+            <span>&darr;</span>
         </div>
-    </div>
+        </div>
 
     <script src="script.js"></script>
 </body>
