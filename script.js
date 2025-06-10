@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ======================================= */
-    // === HİKAYE VERİSİ (YÜZ İFADELERİ AYARLI) === */
+    // === HİKAYE VERİSİ === */
     // ======================================= */
     
     const storyData = [
@@ -237,9 +237,18 @@ document.addEventListener('DOMContentLoaded', () => {
             text: `Ve böylece, ikisi birbirlerine daha fazla kıymet verirler. Güneş, Ay’ı kaybetmekten korkmaz artık, çünkü onun karanlıkta da var olabildiğini bilir.`,
             action: () => { sun.classList.add('happy'); moon.classList.add('happy'); }
         },
-        {
+        { // GÜNCELLEME: Sarılma animasyonu için son sahne
             text: `Ay ise, Güneş’e muhtaç gibi hissetmez, çünkü kendini keşfetmiştir. Ama yine de, her dönüşte birbirlerine kavuşmayı isterler çünkü ışık, ancak gölge ile anlam kazanır.`,
-            action: () => { sun.style.left = '42%'; moon.style.left = '58%'; sun.style.boxShadow = '0 0 70px var(--sun-color), 0 0 140px var(--sun-glow1), 0 0 200px var(--sun-glow2)'; }
+            action: () => {
+                sun.classList.add('happy');
+                moon.classList.add('happy');
+                // Birbirlerine sarılmaları için pozisyonları ayarla
+                sun.style.left = '48%';
+                sun.style.transform = 'translate(-50%, -50%) rotate(-10deg)';
+                moon.style.left = '52%';
+                moon.style.transform = 'translate(-50%, -50%) rotate(10deg)';
+                moon.style.zIndex = '3'; // Ay'ın Güneş'in önüne gelmesi için
+            }
         }
     ];
 
@@ -260,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
         moon.style.transform = 'translate(-50%, -50%) rotate(0deg)';
         moon.style.background = 'var(--moon-color)';
         moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)';
+        moon.style.zIndex = '2'; // z-index'i sıfırla
         world.style.left = '-100px';
         world.style.opacity = '0';
     }

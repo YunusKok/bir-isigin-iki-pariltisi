@@ -93,7 +93,7 @@ body {
     transform: translate(-50%, -50%); 
     opacity: 0; 
     z-index: 10;
-    background: url(images/2k_earth_daymap.jpg);
+    background: url(https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg);
     background-size: 200% 100%;
     box-shadow: inset 15px 0 30px rgba(0,0,0,0.9), 0 0 25px rgba(120, 180, 255, 0.5);
     animation: spin-world 40s linear infinite;
@@ -129,8 +129,6 @@ body {
 }
 .cheek.left { left: 15%; }
 .cheek.right { right: 15%; }
-
-/* GÜNCELLEME: Vişne stili kaldırıldı. */
 
 
 /* ======================================= */
@@ -205,50 +203,43 @@ body {
     transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* GÜNCELLEME: El stili kaldırıldı */
-#moon .heart {
+/* YENİ: Ay'ın Kol (Hand) Stili */
+#moon .hand {
     position: absolute;
+    width: 8px;
+    height: 25px;
+    top: 45%;
+    background-color: #444;
     border-radius: 10px;
     opacity: 0;
-    transition: all 0.5s ease-out;
-    z-index: 20; /* Kalp en önde olsun */
-    width: 22px; height: 20px;
-    top: 50%; /* Ortadan çıksın */
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    background: radial-gradient(circle at 60% 35%, #ff8a8a, #e74c3c 60%);
-    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.5);
+    /* Kolların başlangıç pozisyonu (vücudun içinde) */
+    transform: translateY(5px) scaleY(0.8);
+    transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Zıplama efekti */
+    z-index: 1;
 }
-#moon .heart::before, #moon .heart::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: inherit;
-    border-radius: 50%;
-}
-#moon .heart::before { top: -11px; left: 0; }
-#moon .heart::after { top: 0px; left: 11px; }
+#moon .hand.left { left: 20%; }
+#moon .hand.right { right: 20%; }
 
-/* GÜNCELLEME: Hover efekti sadece kalbi gösterecek şekilde basitleştirildi */
-#moon:hover .heart {
+
+/* GÜNCELLEME: Hover efekti "kolları açma" olarak değiştirildi */
+#moon:hover .hand {
     opacity: 1;
-    transform: translate(-50%, -150%) scale(1.2); /* Kalp yukarı doğru çıksın */
-    animation: pulse-heart 1.2s infinite ease-in-out;
 }
-/* Yüzün tepki vermesi hoş bir detay, bunu koruyalım */
-#moon:hover .face {
-    transform: scale(0.95); /* Yüz hafifçe küçülerek kalbe yer açsın */
+#moon:hover .hand.left {
+    transform: translateY(0) rotate(-75deg) translateX(-15px);
+}
+#moon:hover .hand.right {
+    transform: translateY(0) rotate(75deg) translateX(15px);
+}
+/* İmleç üzerindeyken yüz mutlu olsun */
+#moon:hover .face .mouth {
+    height: 20%;
+    top: 55%;
+    border-radius: 0 0 70px 70px;
+    background: transparent;
+    border-bottom: 5px solid #2c2c2c;
 }
 
-@keyframes pulse-heart {
-    0%, 100% {
-        transform: translate(-50%, -150%) scale(1.2);
-    }
-    50% {
-        transform: translate(-50%, -155%) scale(1.3); /* Atarken hafifçe yukarı zıplasın */
-    }
-}
 
 /* ======================================= */
 /* === FİNAL YAZISI VE IŞILTISI === */
