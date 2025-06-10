@@ -93,7 +93,7 @@ body {
     transform: translate(-50%, -50%); 
     opacity: 0; 
     z-index: 10;
-    background: url(https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg);
+    background: url(images/2k_earth_daymap.jpg);
     background-size: 200% 100%;
     box-shadow: inset 15px 0 30px rgba(0,0,0,0.9), 0 0 25px rgba(120, 180, 255, 0.5);
     animation: spin-world 40s linear infinite;
@@ -143,8 +143,9 @@ body {
     border-radius: 10px;
     padding: 50px 40px;
     background-color: rgba(10, 15, 25, 0.6);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    /* GÜNCELLEME: Blur efekti azaltıldı (5px -> 3px) */
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 0 0px 0px rgba(220, 220, 255, 0);
     transition: all 0.8s ease-in-out;
@@ -163,15 +164,14 @@ body {
     text-align: center;
     color: #e0e0e0;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    padding-bottom: 20px; /* Sayfa numarasına yer açmak için */
+    padding-bottom: 20px;
 }
 
-/* YENİ: Sahne Numaralandırma Stili */
 .scene-progress {
     position: absolute;
     bottom: 20px;
     right: 25px;
-    font-family: 'Roboto', sans-serif; /* Daha okunaklı bir font */
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.4);
@@ -229,4 +229,48 @@ body {
     0% { opacity: 0; transform: translateY(0) scale(0.5); }
     50% { opacity: 1; transform: scale(1.2); }
     100% { opacity: 0; transform: translateY(-40px) scale(0); }
+}
+
+
+/* ================================================ */
+/* === YENİ: MOBİL UYUMLULUK (RESPONSIVE DESIGN) === */
+/* ================================================ */
+
+/* Ekran genişliği 768px veya daha az olduğunda bu kurallar devreye girer */
+@media (max-width: 768px) {
+    /* Ana metin konteynerini genişleterek telefon ekranını daha iyi kullanmasını sağlıyoruz */
+    #story-scroll-container {
+        width: 90%;
+    }
+
+    /* Telefon ekranında daha okunaklı olması için yazı font boyutlarını küçültüyoruz */
+    .story-scene p {
+        font-size: 1.2rem;
+    }
+
+    /* Ana başlığı mobil ekran için küçültüyoruz */
+    .intro-title h1 {
+        font-size: 2.2rem;
+    }
+
+    /* Final yazısının boyutunu ayarlıyoruz */
+    .final-quote {
+        font-size: 1.8rem;
+    }
+
+    /* Gök cisimlerini mobil ekranda daha orantılı görünmeleri için küçültüyoruz */
+    #sun {
+        width: 100px;
+        height: 100px;
+    }
+
+    #moon {
+        width: 45px;
+        height: 45px;
+    }
+
+    #world {
+        width: 60px;
+        height: 60px;
+    }
 }
