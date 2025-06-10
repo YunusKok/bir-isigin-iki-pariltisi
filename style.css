@@ -18,7 +18,9 @@ body {
     color: var(--text-color);
 }
 
-/* Sabit Arka Plan */
+/* ======================================= */
+/* === Evren ve Arka Plan === */
+/* ======================================= */
 #universe {
     position: fixed;
     top: 0;
@@ -38,6 +40,9 @@ body {
     from {background-position:0 0;} to {background-position:-10000px 5000px;}
 }
 
+/* ======================================= */
+/* === Gök Cisimleri ve Yüz İfadeleri === */
+/* ======================================= */
 #sun, #moon, #world {
     position: absolute;
     border-radius: 50%;
@@ -56,6 +61,7 @@ body {
     width: 60px; height: 60px; background: var(--moon-color);
     top: 50%; left: 80%; transform: translate(-50%, -50%);
     box-shadow: 0 0 15px #FFFFFF, 0 0 30px var(--moon-glow);
+    transition: all var(--transition-speed) ease-in-out, animation 0.1s;
 }
 
 #world {
@@ -64,7 +70,6 @@ body {
     top: 50%; left: -100px; transform: translate(-50%, -50%); opacity: 0; z-index: 10;
 }
 
-/* YÜZ İFADELERİ */
 .face { position: relative; width: 100%; height: 100%; }
 .eye {
     position: absolute; top: 35%; width: 15%; height: 15%; background: #2c2c2c; border-radius: 50%;
@@ -78,7 +83,6 @@ body {
     transition: all calc(var(--transition-speed) / 2) ease-in-out;
 }
 
-/* İfade Sınıfları */
 .happy .mouth { height: 20%; top: 55%; border-radius: 0 0 70px 70px; background: transparent; border-bottom: 5px solid #2c2c2c; }
 .sad .mouth { height: 20%; top: 65%; border-radius: 70px 70px 0 0; background: transparent; border-top: 5px solid #2c2c2c; }
 .surprised .mouth { width: 20%; height: 20%; border-radius: 50%; background: #2c2c2c; }
@@ -88,17 +92,18 @@ body {
 .wistful .eye { top: 40%; height: 5%; border-radius: 20px 20px 0 0; background: transparent; border-top: 3px solid #2c2c2c;}
 .wistful .mouth {width: 25%; height: 2px; top: 65%;}
 
-/* Kaydırılabilir Hikaye Alanı */
+/* ======================================= */
+/* === Hikaye Alanı ve Başlık === */
+/* ======================================= */
 #story-scroll-container {
     position: relative;
     z-index: 20;
     width: 50%;
     max-width: 650px;
     margin: 0 auto;
-    padding-bottom: 100vh; /* Son sahnenin görünmesi için boşluk */
+    padding-bottom: 100vh;
 }
 
-/* DÜZELTME: Bu bölümdeki 'position: absolute' kaldırıldı */
 .intro-title {
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     height: 100vh;
@@ -113,7 +118,6 @@ body {
 
 .story-scene {
     position: relative;
-    padding: 5rem 2rem;
     margin-bottom: 50vh;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 15px;
@@ -121,6 +125,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     opacity: 0.7;
     transition: opacity 0.5s ease-in-out, border-color 0.5s ease-in-out;
+    padding: 60px 40px;
 }
 
 .story-scene.is-active {
@@ -136,54 +141,36 @@ body {
     text-align: center;
 }
 
-/* style.css */
-
 /* ======================================= */
 /* === GELİŞMİŞ SAF CSS ÇİÇEK SÜSLEMELERİ === */
 /* ======================================= */
-
-.story-scene {
-    position: relative;
-    padding: 60px 40px; /* Süslemelere daha fazla yer açalım */
-    background: rgba(0, 0, 0, 0.4); 
-}
 
 .flower-decoration {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    height: 40px; /* Yüksekliği biraz artıralım */
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 25px;
 }
 
-.flower-decoration.top {
-    top: 10px;
-}
+.flower-decoration.top { top: 10px; }
+.flower-decoration.bottom { bottom: 10px; }
 
-.flower-decoration.bottom {
-    bottom: 10px;
-}
-
-/* --- Gelişmiş LALE Tasarımı --- */
 .lale {
     position: relative;
-    width: 18px; /* Boyutları büyütelim */
+    width: 18px;
     height: 25px;
-    /* Düz renk yerine renk geçişi (gradient) ile derinlik katalım */
     background: linear-gradient(to bottom, #e74c3c, #c0392b);
-    /* Daha organik bir lale şekli için gelişmiş border-radius */
     border-radius: 50% 50% 3% 3% / 85% 85% 15% 15%;
     opacity: 0;
-    /* Hafif bir gölge ile yaprakları belirginleştirelim */
     box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2);
 }
 
-.lale::before,
-.lale::after {
+.lale::before, .lale::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -196,94 +183,49 @@ body {
     box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2);
 }
 
-.lale::before {
-    transform: translateX(-55%) rotate(-25deg);
-}
+.lale::before { transform: translateX(-55%) rotate(-25deg); }
+.lale::after { transform: translateX(55%) rotate(25deg); }
 
-.lale::after {
-    transform: translateX(55%) rotate(25deg);
-}
-
-
-/* --- Gelişmiş ZAMBAK Tasarımı --- */
 .zambak {
     position: relative;
-    width: 25px; /* Boyutları büyütelim */
+    width: 25px;
     height: 25px;
     opacity: 0;
-    /* Ana yapraklar için hafif bir dönme efekti */
     transform: rotate(15deg); 
 }
 
-.zambak::before,
-.zambak::after {
+.zambak::before, .zambak::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Merkezden dışa doğru yumuşak bir beyaz geçişi */
     background: radial-gradient(circle, #fff, #e8e8e8);
-    /* Daha zarif ve sivri bir yaprak şekli */
     border-radius: 50% 0;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
-.zambak::before {
-    transform: rotate(-45deg) scale(1.1); /* Biraz daha büyük ve belirgin */
-}
-
+.zambak::before { transform: rotate(-45deg) scale(1.1); }
+.zambak::after { transform: rotate(135deg) scale(1.1); }
 .zambak::after {
-    transform: rotate(135deg) scale(1.1);
-}
-
-/* Zambak ortasındaki sarı benekler */
-.zambak::after {
-    /* İkinci bir gradient katmanı ile sarı merkezi oluşturalım */
     background: radial-gradient(circle, #f1c40f 2px, transparent 3px), 
                 radial-gradient(circle, #fff, #e8e8e8);
 }
 
-
-/* Çiçeklerin sahne aktif olunca belirmesi için animasyon */
 @keyframes bloom {
-    0% {
-        opacity: 0;
-        transform: scale(0.2) rotate(0deg);
-    }
-    60% {
-        transform: scale(1.1) rotate(5deg);
-    }
-    100% {
-        opacity: 0.9;
-        transform: scale(1) rotate(0deg);
-    }
+    0% { opacity: 0; transform: scale(0.2); }
+    60% { transform: scale(1.1); }
+    100% { opacity: 0.9; transform: scale(1); }
 }
-
-.zambak {
-    /* Zambak için farklı bir başlangıç rotasyonu */
-    transform: rotate(15deg);
-}
-.zambak:hover {
-    transform: rotate(0deg); /* Üzerine gelince düzelsin */
-}
-@keyframes bloom {
-    /* Zambak için kendi rotasyonunu koruyacak şekilde güncelleme */
-    0% { opacity: 0; transform: scale(0.2) rotate(15deg); }
-    60% { transform: scale(1.1) rotate(20deg); }
-    100% { opacity: 0.9; transform: scale(1) rotate(15deg); }
-}
-
 
 .story-scene.is-active .flower-decoration div {
     animation-name: bloom;
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Zıplama efekti */
+    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
-/* Her çiçeğin farklı bir gecikmeyle belirmesi */
 .story-scene.is-active .flower-decoration div:nth-child(1) { animation-delay: 0.1s; }
 .story-scene.is-active .flower-decoration div:nth-child(2) { animation-delay: 0.2s; }
 .story-scene.is-active .flower-decoration div:nth-child(3) { animation-delay: 0.3s; }
@@ -299,3 +241,21 @@ body {
 .story-scene.is-active .flower-decoration div:nth-child(13) { animation-delay: 0.65s; }
 .story-scene.is-active .flower-decoration div:nth-child(14) { animation-delay: 0.75s; }
 .story-scene.is-active .flower-decoration div:nth-child(15) { animation-delay: 0.8s; }
+
+/* ======================================= */
+/* === GÜNEŞ VE AY HOVER EFEKTLERİ === */
+/* ======================================= */
+#sun:hover {
+    box-shadow: 0 0 70px var(--sun-color), 0 0 140px var(--sun-glow1), 0 0 200px var(--sun-glow2);
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+@keyframes tickle {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-48%, -52%) rotate(3deg); }
+    75% { transform: translate(-52%, -48%) rotate(-3deg); }
+}
+
+#moon:hover {
+    animation: tickle 0.4s infinite ease-in-out;
+}

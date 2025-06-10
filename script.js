@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 moon.classList.add('sad');
                 sun.style.left = '20%';
                 moon.style.left = '80%';
-                world.style.left = '50%'; // Dünya araya girer
+                world.style.left = '50%';
                 world.style.opacity = '1';
             }
         },
@@ -144,43 +144,61 @@ document.addEventListener('DOMContentLoaded', () => {
         world.style.opacity = '0';
     }
 
+    function populateStory() {
+        storyData.forEach((scene, index) => {
+            const sceneEl = document.createElement('div');
+            sceneEl.classList.add('story-scene');
+            sceneEl.setAttribute('data-scene-index', index);
 
-function populateStory() {
-    storyData.forEach((scene, index) => {
-        const sceneEl = document.createElement('div');
-        sceneEl.classList.add('story-scene');
-        sceneEl.setAttribute('data-scene-index', index);
+            const topDecoration = document.createElement('div');
+            topDecoration.classList.add('flower-decoration', 'top');
 
-        const topDecoration = document.createElement('div');
-        topDecoration.classList.add('flower-decoration', 'top');
+            const bottomDecoration = document.createElement('div');
+            bottomDecoration.classList.add('flower-decoration', 'bottom');
 
-        const bottomDecoration = document.createElement('div');
-        bottomDecoration.classList.add('flower-decoration', 'bottom');
-
-        // 15 adet çiçek elementi oluşturup üst ve alt süsleme alanlarına ekleyelim
-        for (let i = 0; i < 15; i++) {
-            const flower = document.createElement('div');
-            // Sahne indeksine göre lale veya zambak sınıfı ekle
-            if (index % 2 === 0) {
-                flower.classList.add('lale');
-            } else {
-                flower.classList.add('zambak');
+            for (let i = 0; i < 15; i++) {
+                const flower = document.createElement('div');
+                if (index % 2 === 0) {
+                    flower.classList.add('lale');
+                } else {
+                    flower.classList.add('zambak');
+                }
+                topDecoration.appendChild(flower);
+                bottomDecoration.appendChild(flower.cloneNode(true));
             }
-            topDecoration.appendChild(flower);
-            // Her çiçeği klonlayarak alt süslemeye de ekleyelim ki bağımsız olsunlar
-            bottomDecoration.appendChild(flower.cloneNode(true));
-        }
 
-        const paragraph = document.createElement('p');
-        paragraph.innerHTML = scene.text;
+            const paragraph = document.createElement('p');
+            paragraph.innerHTML = scene.text;
 
-        sceneEl.appendChild(topDecoration);
-        sceneEl.appendChild(paragraph);
-        sceneEl.appendChild(bottomDecoration);
-        
-        storyContainer.appendChild(sceneEl);
-    });
-}
+            sceneEl.appendChild(topDecoration);
+            sceneEl.appendChild(paragraph);
+            sceneEl.appendChild(bottomDecoration);
+            
+            storyContainer.appendChild(sceneEl);
+        });
+    }
+
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.6
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const activeScene = entry.target;
+                const sceneIndex = parseInt(activeScene.getAttribute('data-scene-index'));
+                
+                document.querySelectorAll('.story-scene').forEach(el => el.classList.remove('is-active'));
+                activeScene.classList.add('is-active');
+
+                resetAllStates();
+                storyData[sceneIndex].action();
+            }
+        });
+    }, options);
+
     populateStory();
     const scenes = document.querySelectorAll('.story-scene');
     scenes.forEach(scene => observer.observe(scene));
