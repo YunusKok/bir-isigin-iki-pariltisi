@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const starCount = 200;
         const memoryStars = [15, 65, 115, 165]; // Anı yıldızı olacak yıldızların indeksi
         const memories = [
-            "İlk buluşmamız, 15.03.2023",
-            "En sevdiğimiz şarkı...",
-            "Unutamadığım o an...",
-            "Ve bizim için her şeyin başladığı yer."
+            "Baltanem",
+            "Bebiş",
+            "Seni çooook seviyorum",
+            "Kitap gibisin okudukça derinliklerinde kayboluyorum"
         ];
 
         for (let i = 0; i < starCount; i++) {
@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     }
 
-    // ======================================= */
-    // === HİKAYE VERİSİ (Değişiklik yok) === */
-    // ======================================= */
+    // ======================*/
+    // === HİKAYE VERİSİ === */
+    // =====================*/
     const storyData = [
         {
             text: `Evrenin sonsuz karanlığında, yıldızların sessizce parladığı bir boşlukta, ışık ve gölge birbirine fısıldıyordu.`,
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `İlk zamanlarda bu bağlılığı fark etmemişlerdi. Güneş, tüm gezegenleri aynı sıcaklıkla kucaklıyor, ışığını evrenin derinliklerine gönderirken, Ay sessizce gökyüzünde onun izini sürüyordu.`,
-            action: () => {}
+            action: () => { moon.classList.add('wistful'); }
         },
         {
             text: `Ancak bir şey değişmeye başladı Ay artık sadece ışık taşıyan bir varlık olmaktan öteye geçmek istiyordu. O hep oradaydı, ama bunun farkına varmak için zamanın akmasını beklemişti. Ve bir gün, içindeki özlem büyüdü.`,
@@ -128,19 +128,19 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `İşte bu düşünceler, onun kaderini değiştiren ilk kıvılcımı ateşledi. Ay, ışığını alıp sadece taşımak istemedi artık; Güneş’in yanına gitmek, ona gerçekten ulaşmak istiyordu.`,
-            action: () => { moon.style.left = '72%'; }
+            action: () => { moon.style.left = '72%'; moon.classList.add('wistful'); }
         },
         {
             text: `Güneş ise bu değişimi fark ettiğinde şaşırdı. Ay her zaman dingin, uzak ve kendi halinde olmuştu. Ama şimdi, ışığında bir kırılma görüyordu.`,
-            action: () => { sun.classList.add('surprised'); moon.classList.remove('wistful'); }
+            action: () => { sun.classList.add('surprised'); moon.classList.add('wistful'); }
         },
         {
             text: `Ay’ın enerjisi değişmişti ona doğru akıyordu, yaklaşmanın, sınırlarını aşmanın kıyısında duruyordu. Güneş bir an duraksadı, içindeki sıcaklığın Ay’a nasıl dokunduğunu hissetti.`,
-            action: () => { moon.style.left = '68%'; }
+            action: () => { moon.style.left = '68%'; moon.classList.add('happy'); }
         },
         {
             text: `Ve o an, anladı: Bu sadece bir ışık paylaşımı değil, bir bağlılığın ortaya çıkışıydı. Ay, yörüngesini değiştirdi, Güneş’e doğru ilerlemeye başladı.`,
-            action: () => { sun.classList.remove('surprised'); moon.style.left = '60%'; }
+            action: () => { moon.style.left = '60%'; moon.classList.add('happy');}
         },
         {
             text: `Yaklaşırken, yüzeyi yavaş yavaş kızardı Güneş’in etkileyiciliği karşısında kendisini durduramıyordu. İlk defa, ışığın yalnızca bir parçası olmadığını, onun içinde yaşayan bir duyguya dönüştüğünü hissediyordu.`,
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `Güneş, Ay’ın bu dönüşümünü gördüğünde şaşkınlıkla ona baktı. Onun kendisini nasıl gördüğünü anladı yalnızca bir ışık kaynağı değil, Ay’ın içinde saklı bir his, bir bağlılık… Kıskançlık, özlem ve tutku iç içe geçmişti.`,
-            action: () => { sun.classList.add('surprised'); }
+            action: () => { sun.classList.add('surprised'); moon.style.background = '#FFE4E1'; moon.style.boxShadow = '0 0 20px #FFC0CB, 0 0 40px #FF69B4'; moon.classList.add('happy'); }
         },
         {
             text: `Ve şimdi, bu buluşma, sadece ışıkların birleşmesi değil, iki varlığın birbirlerinin içinde kaybolmasıydı. Güneş, Ay’a her baktığında kendi ışığını onda görüyordu. Ama artık, sadece bir yansıma değil, bir gerçeklikti bu.`,
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `Güneş, güçlüydü, ihtişamlıydı... Ama gün içinde, bazen kendisini bile şaşırtan küçük sakarlıklar yapıyordu. Sabah kahvesini döküyor, telefonu elinden kayıp düşüyordu.`,
-            action: () => { sun.classList.add('surprised'); }
+            action: () => { sun.classList.add('surprised'); moon.classList.add('happy'); }
         },
         {
             text: `Ay ise onun bu haline hayranlıkla baktı ve fısıldadı: "Biliyor musun, tam olarak böyle olduğun için seni seviyorum. Küçük sakarlıkların… Bütün bunlar seni daha tatlı yapıyor."`,
@@ -172,35 +172,35 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `Güneş, Ay’a olan sevgisinin yalnızca ona değil, onun yanında kendisine duyduğu sevgi olduğunu anladı. Ay, ona kendi en saf halini göstermişti ve Güneş artık, sadece Ay’a değil, onunla olduğu “kendisine” de âşıktı.`,
-            action: () => { sun.style.left = '48%'; moon.style.left = '52%'; }
+            action: () => { sun.style.left = '48%'; moon.style.left = '52%'; sun.classList.add('happy'); moon.classList.add('happy'); }
         },
         {
             text: `"Gözlerime bakamasan da şu an, bildiğim bir şey var: Sen benim içimde, en derin yerde yaşayan en güzel 'iyi ki'msin. Ve ben, bu uzaklığa rağmen her geçen gün sana daha da yaklaşıyorum. Çünkü mesafeler bir kalbi vazgeçiremiyorsa, o kalp gerçekten seviyor demektir."`,
-            action: () => {}
+            action: () => { sun.classList.add('happy'); moon.classList.add('happy'); }
         },
         {
             text: `Güneş, içinde ışıkla dalgalanan duygularıyla fısıldadı: "Seni çok seviyorum. Hem çocuk halimle, hem sakar halimle, hem de seni her kelimemde taşıyan bu deli kalbimle. Benim Ay’ım, benim sessizliğim, benim sonsuzluğum…"`,
-            action: () => {}
+            action: () => { sun.classList.add('happy'); moon.classList.add('happy'); }
         },
         {
             text: `Onlar birbirlerine ulaşamayan ama birbirleri olmadan da var olamayan iki aşık gibiydi. Aşk, bazen ulaşmak değil, her zaman hissetmek değil mi?`,
-            action: () => { sun.style.left = '30%'; moon.style.left = '70%'; }
+            action: () => { sun.style.left = '30%'; moon.style.left = '70%'; sun.classList.add('happy'); moon.classList.add('happy'); }
         },
         {
             text: `Ay anladı ki, Güneş’e ulaşmak onun ışığında yok olmak değil, onunla birlikte parlamak demekti. Bazen aşk, uzaklığın içinde güçlenir ve mesafeler onun sınırlarını belirlemez.`,
-            action: () => {}
+            action: () => { sun.classList.add('wistful'); moon.classList.add('wistful'); }
         },
         {
             text: `Çünkü gerçek aşk, sadece dokunmaktan ibaret değildi; birlikte var olmak, birbirini tamamlamak ve hiçbir zaman kaybolmamak demekti.`,
-            action: () => { sun.style.left = '40%'; moon.style.left = '60%'; }
+            action: () => { sun.style.left = '40%'; moon.style.left = '60%'; sun.classList.add('happy'); moon.classList.add('happy'); }
         },
         {
             text: `Belki de aşk böyleydi… Birbirinin içinde var olmak, ama yine de kendi ışığını taşımak. Ay ve Güneş birbirlerine bakarken gerçeği anladılar. Onların ışıkları hiçbir zaman ayrı değildi hep iç içeydi.`,
-            action: () => { sun.style.left = '45%'; moon.style.left = '55%'; }
+            action: () => { sun.style.left = '45%'; moon.style.left = '55%'; sun.classList.add('happy'); moon.classList.add('happy'); }
         },
         {
-            text: `Güneş bunu fark ettiğinde, içinde kıskanç bir alev parladı. Gezegenlerin gökyüzünde Ay’a baktığını gördü. Ay, yalnızca Güneş’e ait değil miydi?`,
-            action: () => { sun.classList.add('angry'); sun.style.boxShadow = '0 0 70px #FF4500, 0 0 140px #FF0000, 0 0 200px var(--sun-color)'; }
+            text: `Güneşin içinde kıskanç bir alev parladı. Gezegenlerin gökyüzünde Ay’a baktığını gördü. Ay, yalnızca Güneş’e ait değil miydi?`,
+            action: () => { sun.classList.add('angry'); sun.style.boxShadow = '0 0 70px #FF4500, 0 0 140px #FF0000, 0 0 200px var(--sun-color)'; moon.classList.add('surprised'); }
         },
         {
             text: `Ama tam bu düşüncelere kapıldığında, Ay ona nazikçe parladı: “Ben senin ışığından doğdum, senin parçanım. Başkaları bana baksa da, yalnızca seninle var olabilirim.”`,
@@ -248,6 +248,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 moon.style.left = '75%';
                 world.style.left = '50%';
                 world.style.opacity = '1';
+                sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+                
+                moon.style.boxShadow = '0 0 5px #444';
+                moon.style.background = '#888';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
             }
         },
         {
@@ -259,11 +275,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 moon.style.left = '75%';
                 world.style.left = '50%';
                 world.style.opacity = '1';
+                sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+                
+                moon.style.boxShadow = '0 0 5px #444';
+                moon.style.background = '#888';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
             }
         },
         {
             text: `Güneş dünyasının karanlıkta bıraktığı kısmını ayın aydınlatmasından sakınır ama unuttuğu bir şey var o da Ayın ışığının kaynağı kendisi. Bu yüzden bazen ışığını kesebilir ve dünyanın karanlık yüzü derin bir geceye bürünür.`,
             action: () => {
+                moon.style.boxShadow = '0 0 5px #444';
+                moon.style.background = '#888';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+
                 sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
                 sun.classList.add('sad');
                 moon.classList.add('sad');
@@ -276,6 +317,14 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             text: `Ay ise o karanlıkta evrenin boşluğuna karışır. Işık kaynağını kaybedince adeta görünmez olur.`,
             action: () => {
+                sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
+                sun.classList.add('sad');
+                moon.classList.add('sad');
+                sun.style.left = '25%';
+                moon.style.left = '75%';
+                world.style.left = '50%';
+                world.style.opacity = '1';
+
                 moon.style.boxShadow = '0 0 5px #444';
                 moon.style.background = '#888';
                 sun.classList.add('sad');
@@ -313,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         {
-            text: `Güneş ise, Ay’ı göremediği zaman gerçek parlaklığını sorgulamaya başlar. Hep dünyasını aydınlatmakla meşgulken, Ay’ın ona kattığı anlamı fark etmemiştir. Kendi ışığı güçlü olsa da, onun güzelliğini en iyi yansıtanın Ay olduğunu şimdi anlar.`,
+            text: `Güneş ise, Ay’ı göremediği zaman gerçek parlaklığını sorgulamaya başlar. Hep dünyasını aydınlatmakla meşgulken, Ay’ın ona kattığı anlamı fark etmemiştir. Onun güzelliğinin yasnımaya ihtiyacı yoktur`,
             action: () => {
                 sun.classList.remove('sad');
                 sun.classList.add('wistful');
@@ -326,15 +375,15 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `Ve Ay’ın kaybolduğunu düşündüğü o an, Güneş onun aslında karanlığın içinde yeni bir şekil aldığını görmeye başlar.`,
-            action: () => { sun.classList.add('surprised'); }
+            action: () => { sun.classList.add('surprised'); moon.classList.add('happy'); moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff'; }
         },
         {
             text: `Sonra, evrenin döngüsü devam eder. Zaman geçtikçe, tutulma sona erer ve Ay tekrar Güneş’in ışığını kucaklar.`,
-            action: () => { world.style.left = '120%'; world.style.opacity = '0'; sun.classList.remove('surprised'); sun.classList.add('happy'); }
+            action: () => { world.style.left = '120%'; world.style.opacity = '0'; sun.classList.remove('surprised'); sun.classList.add('happy'); moon.classList.add('happy'); }
         },
         {
             text: `Ama bu sefer fark vardır; Ay artık sadece Güneş’in ışığını taşıyan bir varlık değil, kendi içsel ışığını da bilen bir yıldızdır. Güneş de artık sadece parlayan bir merkez değil, Ay’ın yansıması olmadan da var olan bir varlıktır.`,
-            action: () => { sun.style.left = '35%'; moon.style.left = '65%'; moon.style.background = 'var(--moon-color)'; moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)'; }
+            action: () => { sun.style.left = '35%'; moon.style.left = '65%'; moon.style.background = 'var(--moon-color)'; moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)'; sun.classList.add('happy'); moon.classList.add('happy'); }
         },
         {
             text: `Ve böylece, ikisi birbirlerine daha fazla kıymet verirler. Güneş, Ay’ı kaybetmekten korkmaz artık, çünkü onun karanlıkta da var olabildiğini bilir.`,
@@ -353,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     ];
-    
+
     // ======================================= */
     // === ANA FONKSİYONLAR VE OLAY DİNLEYİCİLER === */
     // ======================================= */
