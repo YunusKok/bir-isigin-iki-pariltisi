@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.querySelector('.close-modal');
 
     // ======================================= */
-    // === YENİ FONKSİYONLAR === */
+    // === YARDIMCI FONKSİYONLAR === */
     // ======================================= */
 
     // 1. Göz Kırpan & Anı Yıldızları
@@ -38,10 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (memoryIndex !== -1) {
                 star.classList.add('memory-star');
                 star.dataset.memory = memories[memoryIndex];
-                // DÜZELTME: Parlama efekti için gerekli olan 'glint' elementi oluşturuluyor.
+
+                // HATA DÜZELTME: Eksik olan .glint elementi burada oluşturuluyor.
                 const glint = document.createElement('div');
                 glint.classList.add('glint');
                 star.appendChild(glint);
+
             } else {
                 star.style.animationDelay = `${Math.random() * 4}s`;
                 star.style.animationDuration = `${Math.random() * 2 + 3}s`;
@@ -54,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function createShootingStar() {
         const star = document.createElement('div');
         star.classList.add('shooting-star');
-        star.style.top = `${Math.random() * 60}%`; // Ekranın üst %60'ında başlasın
+        star.style.top = `${Math.random() * 60}%`;
         star.style.transform = `rotate(-25deg)`;
-        star.style.animationDuration = `${Math.random() * 2 + 3}s`; // 3-5 saniye arası
+        star.style.animationDuration = `${Math.random() * 2 + 3}s`;
         universe.appendChild(star);
         setTimeout(() => {
             star.remove();
@@ -98,9 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     }
 
-    // ======================*/
+
+    // ======================================= */
     // === HİKAYE VERİSİ === */
-    // =====================*/
+    // ======================================= */
+    
     const storyData = [
         {
             text: `Evrenin sonsuz karanlığında, yıldızların sessizce parladığı bir boşlukta, ışık ve gölge birbirine fısıldıyordu.`,
@@ -220,174 +224,55 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             text: `Bir gün Ay, rüyasında Güneş’i gördü. İçinde bir oyunbazlık vardı ve şakasına onu tanımamazlıktan geldi. Güneş, Ay’ın ne yaptığını hemen anladı.`,
-            action: () => { moon.classList.add('wistful'); sun.classList.add('surprised'); }
+            action: () => { moon.classList.add('wistful'); sun.classList.add('surprised'); sun.style.left = '45%'; moon.style.left = '55%'; }
         },
         {
             text: `Sert bir şekilde ileri doğru atıldı, yakasına sıkıca yapıştı. Ama bu güç, Ay’ı incitmek için değil, onun kaçmasına izin vermemek içindi. Ay, bu sert dokunuşu hissettiğinde kalbi hızlandı.`,
-            action: () => {
-                sun.classList.add('angry');
-                moon.classList.add('surprised');
-                sun.style.left = '48%';
-                moon.style.left = '52%';
-                sun.style.transform = 'translate(-50%, -50%) scale(1.1)';
-            }
+            action: () => { sun.classList.add('angry'); moon.classList.add('surprised'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; moon.style.boxShadow = '0 0 5px #444'; moon.style.background = '#888'; }
         },
         {
             text: `Ayın bir yüzü hep karanlık olur diğer yüzü ise güneşe bakar ve güneşin ışığı sayesinde gözükür. Ama bazen araya ikisinin de dünyaları girer; ay için güneş, güneş için ay tutulması oluşur.`,
-            action: () => {
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-            }
+            action: () => { sun.classList.add('sad'); moon.classList.add('sad'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
             text: `Ay güneşin ışıltısını kaybettiğini, Güneş ayın yansımasının bulanıklaştığını düşünür. Güneş ışıltısını hiç kaybetmemiştir ama yansımasını göremediği için kaybettiğini düşünür. Ay ise Güneşin ondan ışığını esirgediğini düşünür.`,
-            action: () => {
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-                sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-                
-                moon.style.boxShadow = '0 0 5px #444';
-                moon.style.background = '#888';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-            }
+            action: () => { sun.classList.add('sad'); moon.classList.add('sad'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
             text: `Aslında problem ikisinin de dünyasıdır. Güneş, dünyasını etrafında döndürür. Ay ise dünyasının etrafında döner. Güneş, dünyasının hep aydınlık tarafını görmek ister. Ay ise dünyasının karanlıkta kalan yüzünü aydınlatmak ister. Bu yüzden ikisi de bazen ters düşer.`,
-            action: () => {
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-                sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-                
-                moon.style.boxShadow = '0 0 5px #444';
-                moon.style.background = '#888';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-            }
+            action: () => { sun.classList.add('sad'); moon.classList.add('sad'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
             text: `Güneş dünyasının karanlıkta bıraktığı kısmını ayın aydınlatmasından sakınır ama unuttuğu bir şey var o da Ayın ışığının kaynağı kendisi. Bu yüzden bazen ışığını kesebilir ve dünyanın karanlık yüzü derin bir geceye bürünür.`,
-            action: () => {
-                moon.style.boxShadow = '0 0 5px #444';
-                moon.style.background = '#888';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-
-                sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-            }
+            action: () => { sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)'; sun.classList.add('sad'); moon.classList.add('sad'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
             text: `Ay ise o karanlıkta evrenin boşluğuna karışır. Işık kaynağını kaybedince adeta görünmez olur.`,
-            action: () => {
-                sun.style.boxShadow = '0 0 20px var(--sun-color), 0 0 40px var(--sun-glow1)';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-
-                moon.style.boxShadow = '0 0 5px #444';
-                moon.style.background = '#888';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-            }
+            action: () => { moon.style.boxShadow = '0 0 5px #444'; moon.style.background = '#888'; sun.classList.add('sad'); moon.classList.add('sad'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
             text: `Ancak Ay, karanlıkta kaybolduğunu sansa da evrenin boşluğu aslında ona yeni bir ses kazandırır. Görünmez olduğunu düşündüğünde, içsel ışığını keşfetmeye başlar.`,
-            action: () => {
-                moon.style.boxShadow = '0 0 10px #add8e6, 0 0 20px #4682b4';
-                moon.style.background = '#f0f8ff';
-                sun.classList.add('sad');
-                moon.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-            }
+            action: () => { moon.style.boxShadow = '0 0 10px #add8e6, 0 0 20px #4682b4'; moon.style.background = '#f0f8ff'; sun.classList.add('sad'); moon.classList.add('sad'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
             text: `Ay, Güneş’in ışığını yansıtmayı görev bilmişti hep, ama o an fark eder ki, kendi varlığı, ışık olmadan da anlamlıdır. Güneş’in gözleri ondan uzak olsa bile, Ay evrenin sonsuz boşluğunda yankılanan kendi ışığını bulur.`,
-            action: () => {
-                moon.classList.remove('sad');
-                moon.classList.add('happy');
-                moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff';
-                sun.classList.add('sad');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-            }
+            action: () => { moon.classList.remove('sad'); moon.classList.add('happy'); moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff'; sun.classList.add('sad'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
-            text: `Güneş ise, Ay’ı göremediği zaman gerçek parlaklığını sorgulamaya başlar. Hep dünyasını aydınlatmakla meşgulken, Ay’ın ona kattığı anlamı fark etmemiştir. Onun güzelliğinin yasnımaya ihtiyacı yoktur`,
-            action: () => {
-                sun.classList.remove('sad');
-                sun.classList.add('wistful');
-                moon.classList.add('happy');
-                sun.style.left = '25%';
-                moon.style.left = '75%';
-                world.style.left = '50%';
-                world.style.opacity = '1';
-            }
+            text: `Güneş ise, Ay’ı göremediği zaman gerçek parlaklığını sorgulamaya başlar. Hep dünyasını aydınlatmakla meşgulken, Ay’ın ona kattığı anlamı fark etmemiştir. Kendi ışığı güçlü olsa da, onun güzelliğini en iyi yansıtanın Ay olduğunu şimdi anlar.`,
+            action: () => { sun.classList.remove('sad'); sun.classList.add('wistful'); moon.classList.add('happy'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
             text: `Ve Ay’ın kaybolduğunu düşündüğü o an, Güneş onun aslında karanlığın içinde yeni bir şekil aldığını görmeye başlar.`,
-            action: () => { sun.classList.add('surprised'); moon.classList.add('happy'); moon.style.boxShadow = '0 0 20px #add8e6, 0 0 35px #4682b4, 0 0 50px #ffffff'; }
+            action: () => { sun.classList.add('surprised'); moon.classList.add('happy'); sun.style.left = '25%'; moon.style.left = '75%'; world.style.left = '50%'; world.style.opacity = '1'; }
         },
         {
             text: `Sonra, evrenin döngüsü devam eder. Zaman geçtikçe, tutulma sona erer ve Ay tekrar Güneş’in ışığını kucaklar.`,
-            action: () => { world.style.left = '120%'; world.style.opacity = '0'; sun.classList.remove('surprised'); sun.classList.add('happy'); moon.classList.add('happy'); }
+            action: () => { world.style.left = '120%'; world.style.opacity = '0'; sun.classList.remove('surprised'); sun.classList.add('happy'); }
         },
         {
             text: `Ama bu sefer fark vardır; Ay artık sadece Güneş’in ışığını taşıyan bir varlık değil, kendi içsel ışığını da bilen bir yıldızdır. Güneş de artık sadece parlayan bir merkez değil, Ay’ın yansıması olmadan da var olan bir varlıktır.`,
-            action: () => { sun.style.left = '35%'; moon.style.left = '65%'; moon.style.background = 'var(--moon-color)'; moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)'; sun.classList.add('happy'); moon.classList.add('happy'); }
+            action: () => { sun.style.left = '35%'; moon.style.left = '65%'; moon.style.background = 'var(--moon-color)'; moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)'; }
         },
         {
             text: `Ve böylece, ikisi birbirlerine daha fazla kıymet verirler. Güneş, Ay’ı kaybetmekten korkmaz artık, çünkü onun karanlıkta da var olabildiğini bilir.`,
@@ -428,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
         world.style.left = '-100px';
         world.style.opacity = '0';
     }
+
     function populateStory() {
         const totalScenes = storyData.length;
         storyData.forEach((scene, index) => {
@@ -448,41 +334,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Intersection Observer
     const options = { root: null, rootMargin: '0px', threshold: 0.6 };
-    const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { const activeScene = entry.target; const sceneIndex = parseInt(activeScene.getAttribute('data-scene-index')); document.querySelectorAll('.story-scene').forEach(el => el.classList.remove('is-active')); activeScene.classList.add('is-active'); resetAllStates(); storyData[sceneIndex].action(); } }); }, options);
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const activeScene = entry.target;
+                const sceneIndex = parseInt(activeScene.getAttribute('data-scene-index'));
+                document.querySelectorAll('.story-scene').forEach(el => el.classList.remove('is-active'));
+                activeScene.classList.add('is-active');
+                resetAllStates();
+                storyData[sceneIndex].action();
+            }
+        });
+    }, options);
     
-    // İmleç ve Kaydırma Dinleyicileri
     document.addEventListener('mousemove', createCursorTrail);
     let isScrolling;
-    window.addEventListener('scroll', () => { isScrolling = true; clearTimeout(isScrolling); isScrolling = setTimeout(() => { isScrolling = false; }, 100); });
+    window.addEventListener('scroll', () => {
+        isScrolling = true;
+        clearTimeout(isScrolling);
+        isScrolling = setTimeout(() => { isScrolling = false; }, 100);
+    });
 
-    // YENİ: Anı kutusu (modal) dinleyicileri
+    window.addEventListener('load', () => {
+        preloader.classList.add('hidden');
+    });
+
     universe.addEventListener('click', (e) => {
         if (e.target.classList.contains('memory-star')) {
             memoryText.textContent = e.target.dataset.memory;
             memoryModal.classList.add('active');
         }
     });
+
     closeModal.addEventListener('click', () => {
         memoryModal.classList.remove('active');
     });
+
     memoryModal.addEventListener('click', (e) => {
         if (e.target.id === 'memory-modal') {
             memoryModal.classList.remove('active');
         }
     });
 
-    // YENİ: Yükleme ekranı (preloader) dinleyicisi
-    window.addEventListener('load', () => {
-        preloader.classList.add('hidden');
-    });
-
     // ======================================= */
     // === BAŞLATMA === */
     // ======================================= */
     createTwinklingStars();
-    setInterval(createShootingStar, 7000); // 7 saniyede bir kayan yıldız
+    setInterval(createShootingStar, 7000);
     populateStory();
     const scenes = document.querySelectorAll('.story-scene');
     scenes.forEach(scene => observer.observe(scene));
