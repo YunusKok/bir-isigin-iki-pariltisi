@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (memoryIndex !== -1) {
                 star.classList.add('memory-star');
                 star.dataset.memory = memories[memoryIndex];
+                // DÜZELTME: Parlama efekti için gerekli olan 'glint' elementi oluşturuluyor.
+                const glint = document.createElement('div');
+                glint.classList.add('glint');
+                star.appendChild(glint);
             } else {
                 star.style.animationDelay = `${Math.random() * 4}s`;
                 star.style.animationDuration = `${Math.random() * 2 + 3}s`;
