@@ -60,11 +60,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. İmleç Takip Efekti
-    function createCursorTrail(e) { /* ... (Bu fonksiyon aynı) ... */ }
+    function createCursorTrail(e) {
+        const trail = document.createElement('div');
+        trail.classList.add('trail');
+        trail.style.left = `${e.clientX}px`;
+        trail.style.top = `${e.clientY}px`;
+        if(isScrolling) {
+            trail.style.transform = 'translate(-50%, -50%) scale(2)';
+        }
+        document.body.appendChild(trail);
+        setTimeout(() => {
+            trail.remove();
+        }, 800);
+    }
     
     // 4. Final Yazısı
-    function createFinalQuote() { /* ... (Bu fonksiyon aynı) ... */ }
-
+    function createFinalQuote() {
+        const quoteContainer = document.createElement('div');
+        quoteContainer.classList.add('final-quote');
+        quoteContainer.innerText = "Işık, ancak gölge ile anlam kazanır.";
+        storyContainer.appendChild(quoteContainer);
+        
+        setInterval(() => {
+            if (document.querySelectorAll('.final-quote .sparkle').length < 20) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.top = `${Math.random() * 80 + 10}%`;
+                sparkle.style.left = `${Math.random() * 90 + 5}%`;
+                sparkle.style.animationDelay = `${Math.random() * 1.5}s`;
+                quoteContainer.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        }, 100);
+    }
     // ======================================= */
     // === HİKAYE VERİSİ (Değişiklik yok) === */
     // ======================================= */
@@ -328,8 +356,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // === ANA FONKSİYONLAR VE OLAY DİNLEYİCİLER === */
     // ======================================= */
 
-    function resetAllStates() { /* ... (Bu fonksiyon aynı) ... */ }
-    function populateStory() { /* ... (Bu fonksiyon aynı) ... */ }
+    function resetAllStates() {
+        const expressions = ['happy', 'sad', 'surprised', 'angry', 'wistful'];
+        sun.classList.remove(...expressions);
+        moon.classList.remove(...expressions);
+        sun.style.left = '20%';
+        sun.style.top = '50%';
+        sun.style.transform = 'translate(-50%, -50%) scale(1)';
+        sun.style.boxShadow = `0 0 50px var(--sun-color), 0 0 100px var(--sun-glow1), 0 0 150px var(--sun-glow2)`;
+        moon.style.left = '80%';
+        moon.style.top = '50%';
+        moon.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+        moon.style.background = 'var(--moon-color)';
+        moon.style.boxShadow = '0 0 15px #FFFFFF, 0 0 30px var(--moon-glow)';
+        moon.style.zIndex = '2';
+        world.style.left = '-100px';
+        world.style.opacity = '0';
+    }
+
+    function populateStory() {
+        const totalScenes = storyData.length;
+        storyData.forEach((scene, index) => {
+            const sceneEl = document.createElement('div');
+            sceneEl.classList.add('story-scene');
+            sceneEl.setAttribute('data-scene-index', index);
+            
+            const paragraph = document.createElement('p');
+            paragraph.innerHTML = scene.text;
+            sceneEl.appendChild(paragraph);
+
+            const progressIndicator = document.createElement('div');
+            progressIndicator.classList.add('scene-progress');
+            progressIndicator.innerText = `${index + 1} / ${totalScenes}`;
+            sceneEl.appendChild(progressIndicator);
+            
+            storyContainer.appendChild(sceneEl);
+        });
+    }
 
     // Intersection Observer
     const options = { root: null, rootMargin: '0px', threshold: 0.6 };
