@@ -5,94 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const moon = document.getElementById('moon');
     const world = document.getElementById('world');
     const storyContainer = document.getElementById('story-scroll-container');
-    const preloader = document.getElementById('preloader');
-    const memoryModal = document.getElementById('memory-modal');
-    const memoryText = document.getElementById('memory-text');
-    const closeModal = document.querySelector('.close-modal');
 
-    // ======================================= */
-    // === YENİ FONKSİYONLAR === */
-    // ======================================= */
-
-    // 1. Göz Kırpan & Anı Yıldızları
-    function createTwinklingStars() {
-        const starCount = 200;
-        const memoryStars = [15, 65, 115, 165]; // Anı yıldızı olacak yıldızların indeksi
-        const memories = [
-            "İlk buluşmamız, 15.03.2023",
-            "En sevdiğimiz şarkı...",
-            "Unutamadığım o an...",
-            "Ve bizim için her şeyin başladığı yer."
-        ];
-
-        for (let i = 0; i < starCount; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            const size = Math.random() * 2 + 1;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.left = `${Math.random() * 100}%`;
-            
-            const memoryIndex = memoryStars.indexOf(i);
-            if (memoryIndex !== -1) {
-                star.classList.add('memory-star');
-                star.dataset.memory = memories[memoryIndex];
-            } else {
-                star.style.animationDelay = `${Math.random() * 4}s`;
-                star.style.animationDuration = `${Math.random() * 2 + 3}s`;
-            }
-            universe.appendChild(star);
-        }
-    }
-
-    // 2. Kayan Yıldız Oluşturma
-    function createShootingStar() {
-        const star = document.createElement('div');
-        star.classList.add('shooting-star');
-        star.style.top = `${Math.random() * 60}%`; // Ekranın üst %60'ında başlasın
-        star.style.transform = `rotate(-25deg)`;
-        star.style.animationDuration = `${Math.random() * 2 + 3}s`; // 3-5 saniye arası
-        universe.appendChild(star);
-        setTimeout(() => {
-            star.remove();
-        }, 5000);
-    }
-
-    // 3. İmleç Takip Efekti
-    function createCursorTrail(e) {
-        const trail = document.createElement('div');
-        trail.classList.add('trail');
-        trail.style.left = `${e.clientX}px`;
-        trail.style.top = `${e.clientY}px`;
-        if(isScrolling) {
-            trail.style.transform = 'translate(-50%, -50%) scale(2)';
-        }
-        document.body.appendChild(trail);
-        setTimeout(() => {
-            trail.remove();
-        }, 800);
-    }
-    
-    // 4. Final Yazısı
-    function createFinalQuote() {
-        const quoteContainer = document.createElement('div');
-        quoteContainer.classList.add('final-quote');
-        quoteContainer.innerText = "Işık, ancak gölge ile anlam kazanır.";
-        storyContainer.appendChild(quoteContainer);
-        
-        setInterval(() => {
-            if (document.querySelectorAll('.final-quote .sparkle').length < 20) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                sparkle.style.top = `${Math.random() * 80 + 10}%`;
-                sparkle.style.left = `${Math.random() * 90 + 5}%`;
-                sparkle.style.animationDelay = `${Math.random() * 1.5}s`;
-                quoteContainer.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 2000);
-            }
-        }, 100);
-    }
     // ======================================= */
     // === HİKAYE VERİSİ (Değişiklik yok) === */
     // ======================================= */
@@ -395,21 +308,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Intersection Observer
-    const options = { root: null, rootMargin: '0px', threshold: 0.6 };
-    const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { const activeScene = entry.target; const sceneIndex = parseInt(activeScene.getAttribute('data-scene-index')); document.querySelectorAll('.story-scene').forEach(el => el.classList.remove('is-active')); activeScene.classList.add('is-active'); resetAllStates(); storyData[sceneIndex].action(); } }); }, options);
+   const options = { root: null, rootMargin: '0px', threshold: 0.6 };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const activeScene = entry.target;
+                const sceneIndex = parseInt(activeScene.getAttribute('data-scene-index'));
+                document.querySelectorAll('.story-scene').forEach(el => el.classList.remove('is-active'));
+                activeScene.classList.add('is-active');
+                resetAllStates();
+                storyData[sceneIndex].action();
+            }
+        });
+    }, options);
     
     // İmleç ve Kaydırma Dinleyicileri
     document.addEventListener('mousemove', createCursorTrail);
     let isScrolling;
     window.addEventListener('scroll', () => { isScrolling = true; clearTimeout(isScrolling); isScrolling = setTimeout(() => { isScrolling = false; }, 100); });
     
-    // YENİ: Paralaks efekti için kaydırma dinleyicisi
+    // Paralaks efekti için kaydırma dinleyicisi
     window.addEventListener('scroll', () => {
         let scrollY = window.scrollY;
         universe.style.transform = `translateY(${scrollY * 0.3}px)`;
     });
 
-    // YENİ: Anı kutusu (modal) dinleyicileri
+    // Anı kutusu (modal) dinleyicileri
     universe.addEventListener('click', (e) => {
         if (e.target.classList.contains('memory-star')) {
             memoryText.textContent = e.target.dataset.memory;
@@ -425,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // YENİ: Yükleme ekranı (preloader) dinleyicisi
+    // Yükleme ekranı (preloader) dinleyicisi
     window.addEventListener('load', () => {
         preloader.classList.add('hidden');
     });
