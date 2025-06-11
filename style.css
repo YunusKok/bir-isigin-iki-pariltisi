@@ -78,67 +78,28 @@ body {
 
 
 /* ======================================================== */
-/* === GÜNCELLEME: Anı Yıldızı Stilleri Daha Belirgin Hale Getirildi === */
+/* === GÜNCELLEME: Anı Yıldızı İçin Yeni, Basit ve Etkili Stil === */
 /* ======================================================== */
 .memory-star {
-    /* Boyutu belirgin şekilde artırıldı */
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
+    width: 8px;
+    height: 8px;
+    background-color: var(--sun-color); /* Parlak altın rengi */
+    border-radius: 50%;
     cursor: pointer;
-    /* Animasyon daha hızlı ve dikkat çekici hale getirildi */
-    animation: pulse-and-rotate 4s infinite linear;
-    overflow: hidden;
+    z-index: 10; /* Diğer yıldızların üzerinde olmasını garantiler */
+    /* Nabız gibi atan parlama animasyonu */
+    animation: pulse-aura 2s infinite ease-in-out;
 }
 
-.memory-star::before,
-.memory-star::after {
-    content: '';
-    position: absolute;
-    /* Rengi diğerlerinden ayrışması için parlak altın sarısı yapıldı */
-    background-color: var(--sun-color);
-    /* Parlama efekti güçlendirildi */
-    box-shadow: 0 0 15px var(--sun-color), 0 0 8px var(--sun-glow1);
-    border-radius: 3px; /* Köşeler daha tok */
-}
-
-/* Yatay çubuk */
-.memory-star::before {
-    width: 100%;
-    height: 25%; /* Kalınlık artırıldı */
-    top: 37.5%;
-    left: 0;
-}
-
-/* Dikey çubuk */
-.memory-star::after {
-    width: 25%; /* Kalınlık artırıldı */
-    height: 100%;
-    top: 0;
-    left: 37.5%;
-}
-
-/* Nabız animasyonu daha dramatik hale getirildi */
-@keyframes pulse-and-rotate {
-    0%   { transform: scale(1.2) rotate(0deg); }
-    50%  { transform: scale(1.6) rotate(60deg); }
-    100% { transform: scale(1.2) rotate(120deg); }
-}
-
-.memory-star .glint {
-    position: absolute;
-    width: 30%;
-    height: 150%;
-    background-color: rgba(255, 255, 255, 0.6);
-    transform: rotate(45deg) translateX(-250%);
-    animation: star-glint 5s infinite ease-in-out;
-    animation-delay: 0.5s;
-}
-
-@keyframes star-glint {
-    0% { transform: rotate(45deg) translateX(-250%); }
-    20% { transform: rotate(45deg) translateX(250%); }
-    100% { transform: rotate(45deg) translateX(250%); }
+@keyframes pulse-aura {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 8px #fff, 0 0 15px var(--sun-color), 0 0 20px var(--sun-glow1);
+    }
+    50% {
+        transform: scale(1.3);
+        box-shadow: 0 0 15px #fff, 0 0 30px var(--sun-color), 0 0 45px var(--sun-glow1);
+    }
 }
 
 
