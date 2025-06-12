@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const starCount = 200;
         const memoryStars = [15, 65, 115, 165];
         const memories = [
-            "Baltanem",
-            "Bebiş",
-            "Seni çooook seviyorum",
-            "Kitap gibisin okudukça derinliklerinde kayboluyorum"
+            "Easter Egg 1",
+            "Easter Egg 2",
+            "Easter Egg 3",
+            "Easter Egg 4"
         ];
 
         for (let i = 0; i < starCount; i++) {
@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         {
-            text: `Güneş ise, Ay’ı göremediği zaman gerçek parlaklığını sorgulamaya başlar. Hep dünyasını aydınlatmakla meşgulken, Ay’ın ona kattığı anlamı fark etmemiştir. Onun güzelliğinin yasnımaya ihtiyacı yoktur`,
+            text: `Güneş ise, Ay’ı göremediği zaman gerçek parlaklığını sorgulamaya başlar. Hep dünyasını aydınlatmakla meşgulken, Ay’ın ona kattığı anlamı fark etmemiştir. Onun güzelliğinin yansımaya ihtiyacı yoktur`,
             action: () => {
                 sun.classList.remove('sad');
                 sun.classList.add('wistful');
